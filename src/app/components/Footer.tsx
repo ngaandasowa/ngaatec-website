@@ -2,37 +2,13 @@
 
 import React, { useState } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faTimes } from '@fortawesome/free-solid-svg-icons';
+
 
 const Footer = () => {
-  const [showNotification, setShowNotification] = useState(true);
-
-  const closeNotification = () => setShowNotification(false);
 
   return (
     <footer className="bg-gray-100 text-black">
-      {/* Notification Section */}
-{showNotification && (
-  <div className="bg-[#0064FE] text-white py-4 px-4 md:px-8 flex justify-between items-center">
-    <p className="text-sm font-bold">
-      🎉 Special Offers: Visit our store and grab the latest deals!
-    </p>
-    <button
-      onClick={() => window.location.href = '/shop'}
-      className="bg-blue-700 text-white mr-2 px-4 py-2 rounded-md hover:bg-blue-900 flex items-center justify-center"
-    >
-      <FontAwesomeIcon icon={faShoppingCart} /></button>
-    <button
-      onClick={closeNotification}
-      className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-900 flex items-center justify-center"
-    >
-      <FontAwesomeIcon icon={faTimes} /></button>
-  </div>
-)}
-
-
-
+      
       {/* Footer Content */}
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-wrap md:flex-nowrap justify-between items-start">

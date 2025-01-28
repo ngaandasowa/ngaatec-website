@@ -17,19 +17,19 @@ export default function Hero() {
   const [ ] = useState(false);
   const slides = [
     {
-      image: '/computer-repair.jpg',
+      image: '/computer_repair.webp',
       title: 'Computer Repair',
       description: 'Expert computer repair services to keep your devices running smoothly.',
       link: '/services',
     },
     {
-      image: '/about-us.jpg',
+      image: '/about_us.webp',
       title: 'About Us',
       description: 'Learn more about our mission and values at Ngaatec.',
       link: '/about',
     },
     {
-      image: '/online-store.jpg',
+      image: '/online_store.webp',
       title: 'Visit Our Online Store',
       description: 'Shop cutting-edge technology and accessories.',
       link: '/shop',
@@ -57,7 +57,7 @@ export default function Hero() {
     
     const partners = [
       {
-        Image: "/britvish.jpg",
+        Image: "/britvish_logo.webp",
         name: "Britvish Pvt Ltd",
         details: "We supply computers, printers, and offer tech support to Britvish Company.",
         socials: {
@@ -67,7 +67,7 @@ export default function Hero() {
         whatsappNumber: "+263772722901",
       },
       {
-        Image: "/vs-logo1.png",
+        Image: "/vs_logo.webp",
         name: "VS Security",
         details: "Supplier of antivirus systems to VS Security, ensuring their cybersecurity.",
         reference: "https://vssecurity.co.zw",
@@ -79,7 +79,7 @@ export default function Hero() {
 
       },
       {
-        Image: "/kapstone.png",
+        Image: "/kapstone_logo.webp",
         name: "Kapstone Holdings",
         details: "Providing graphic design services to Kapstone Packaging, enhancing their brand image.",
         socials: {
@@ -89,7 +89,7 @@ export default function Hero() {
         whatsappNumber: "+263778965395",
       },
       {
-        Image: "/arosume-logo.png",
+        Image: "/arosume_logo.webp",
         name: "Arosume Properties",
         details: "Providing CCTV, boom gate and biometric tech security services to Arosume Properties (Carrick Creagh Estates).",
         reference: "https://arosume.co.zw",
@@ -100,7 +100,7 @@ export default function Hero() {
         whatsappNumber: "+263779403646",
       },
       {
-        Image: "/gurus-logo.png",
+        Image: "/gurus_logo.webp",
         name: "Gurus Security Technologies",
         details: "Providing CCTV and remote monitoring services to Gurus Security Technogies PVT LTD.",
         reference: "https://gurustech.co.zw",
@@ -111,7 +111,7 @@ export default function Hero() {
         whatsappNumber: "+263783910547",
       },
       {
-        Image: "/mjmlogo.png",
+        Image: "/mjm_logo.webp",
         name: "MJM Leatherware",
         details: "Providing graphic design services to MJM Leatherware (DEHWEAR), enhancing their brand image.",
         socials: {
@@ -121,7 +121,7 @@ export default function Hero() {
         whatsappNumber: "+263718119824",
       },
       {
-        Image: "/SHIPIFY-International-Logo.png",
+        Image: "/shipify_logo.webp",
         name: "Shipify International",
         details: "Providing graphic design services to Kapstone Packaging, enhancing their brand image.",
         callNumber: "+263775804681",
@@ -255,10 +255,10 @@ export default function Hero() {
     <div>
 
 <Head>
-        <title>Home - My Awesome Site</title>
-        <meta name="description" content="Welcome to the homepage of My Awesome Site." />
-        <meta property="og:title" content="Home - My Awesome Site" />
-        <meta property="og:description" content="Welcome to our homepage." />
+        <title>Ngaatec</title>
+        <meta name="description" content="Ngaatec." />
+        <meta property="og:title" content="Home - Ngaatec" />
+        <meta property="og:description" content="Welcome to Ngaatec" />
       </Head>
 
       {/* Hero Section */}
@@ -323,80 +323,50 @@ export default function Hero() {
       </div>
     </section>
 
-      {/* Services Section */}
-<section className="services py-16 bg-gray-100">
-  <div className="container mx-auto text-center">
-    <h2 className="text-3xl font-bold mb-4">What We Offer</h2>
-    <p className="text-lg text-gray-600 mb-8">
-      At Ngaatec, we take pride in delivering reliable and innovative solutions tailored to your needs.
-    </p>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 m-4">
-      {[
-        {
-          title: "CCTV Installation",
-          description:
-            "Secure your premises with our top-notch surveillance systems.",
-          icon: <FaVideo size={36} />,
-        },
-        {
-          title: "Biometric Access Control",
-          description:
-            "Enhance security with advanced biometric and access solutions.",
-          icon: <FaFingerprint size={36} />,
-        },
-        {
-          title: "Electric Gates & Fences",
-          description:
-            "Automate and secure your property with electric gates and fences.",
-          icon: <FaDoorOpen size={36} />,
-        },
-        {
-          title: "Intercom Systems",
-          description:
-            "Stay connected with reliable and user-friendly intercom systems.",
-          icon: <FaPhone size={36} />,
-        },
-        {
-          title: "Satellite Dish Installation",
-          description:
-            "High-quality satellite dish setup for uninterrupted connectivity.",
-          icon: <FaSatelliteDish size={36} />,
-        },
-        {
-          title: "Repair & Maintenance",
-          description:
-            "Comprehensive repair and maintenance services for all your devices.",
-          icon: <FaWrench size={36} />,
-        },
-        {
-          title: "Web Development",
-          description:
-            "We design and develop websites that drive results for your business.",
-          icon: <FaGlobe size={36} />,
-        },
-        {
-          title: "Custom Solutions",
-          description:
-            "Customized technology solutions to meet your unique requirements.",
-          icon: <FaNetworkWired size={36} />,
-        },
-      ].map((service, index) => (
-        <div
-          key={index}
-          className="service-card p-6 bg-white shadow-lg rounded-xl transform transition duration-500 hover:scale-105"
-        >
-          <div className="flex items-center justify-center mb-4">
-            <div className="rounded-full bg-blue-500 text-white p-4">
-              {service.icon}
+    {/* Services Section */}
+    <section className="services py-16 bg-gray-100">
+      <div className="container mx-auto text-center">
+        <h2 className="text-3xl font-bold mb-4">What We Offer</h2>
+        <p className="text-lg text-gray-600 mb-8">
+          At Ngaatec, we take pride in delivering reliable and innovative solutions tailored to your needs.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 m-4">
+          {[
+            {
+              title: "Security Solutions",
+              description:
+                "Comprehensive security systems including intercom, CCTV, biometric access, and electric gates.",
+              icon: <FaVideo size={36} />,
+            },
+            {
+              title: "Repair & Maintenance",
+              description:
+                "Expert repair and maintenance services for all your devices and systems.",
+              icon: <FaWrench size={36} />,
+            },
+            {
+              title: "Technology Solutions",
+              description:
+                "Custom web development and tailored technology solutions for your business.",
+              icon: <FaGlobe size={36} />,
+            },
+          ].map((service, index) => (
+            <div
+              key={index}
+              className="service-card p-6 bg-white shadow-lg rounded-xl transform transition duration-500 hover:scale-105"
+            >
+              <div className="flex items-center justify-center mb-4">
+                <div className="rounded-full bg-blue-500 text-white p-4">
+                  {service.icon}
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+              <p className="text-gray-600">{service.description}</p>
             </div>
-          </div>
-          <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-          <p className="text-gray-600">{service.description}</p>
+          ))}
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
 
 
 
@@ -407,7 +377,7 @@ export default function Hero() {
         <h2 className="text-3xl font-bold mb-4 mr-4 ml-4">
           Are you looking for a Partner to Help You Grow?
         </h2>
-        <p className="text-lg max-w-2xl mx-auto mb-6 mr-4 ml-4">
+        <p className="text-lg mx-auto mb-6 mr-4 ml-4">
           Ngaatec is dedicated to providing innovative technology solutions for individuals and businesses alike.
         </p>
         <a href="/Ngaatec-Private-Limited-Company-Profile.pdf">
@@ -486,8 +456,10 @@ export default function Hero() {
         >
           <div className="relative">
             <Image
-              src="/about-us-man.jpeg"
+              src="/why_us.webp"
               alt="Ngaatec illustration"
+              width={500}
+              height={500}
               className="rounded-lg shadow-lg max-w-full h-auto transform group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-1 rounded-xl border-2 border-transparent group-hover:border-blue-500 animate-border"></div>
@@ -525,6 +497,8 @@ export default function Hero() {
                   className="w-32 h-32 object-contain mx-auto mb-1"
                   src={partner.Image}
                   alt={partner.name}
+                  width={500}
+                  height={500}
                 />
                 <h3 className="text-xl font-semibold mb-1">{partner.name}</h3>
                 <div className="flex justify-center">

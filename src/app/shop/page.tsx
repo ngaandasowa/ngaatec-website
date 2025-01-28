@@ -13,7 +13,7 @@ const ShopPage: React.FC = () => {
       <header
         className="relative bg-cover bg-center h-[50vh] sm:h-[50vh] md:h-[50vh] lg:h-[50vh] text-center"
         style={{
-          backgroundImage: "url('/online-store.jpg')", // Update the path to your image
+          backgroundImage: "url('/online_store.webp')", // Update the path to your image
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-40 flex justify-center items-center">

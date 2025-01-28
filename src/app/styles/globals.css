@@ -4,21 +4,21 @@
 
 @font-face {
   font-family: 'CustomFont';
-  src: url('/font/SamsungSharpSans.woff') format('woff'); 
+  src: url('/font/SamsungSharp_sans.woff') format('woff'); 
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'CustomFont';
-  src: url('/font/SamsungSharpSans-Medium.woff') format('woff');
+  src: url('/font/SamsungSharpSans_Medium.woff') format('woff');
   font-weight: 500; /* Medium weight */
   font-style: normal;
 }
 
 @font-face {
   font-family: 'CustomFont';
-  src: url('/font/SamsungSharpSans-Bold.woff') format('woff');
+  src: url('/font/SamsungSharpSans_Bold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
 }

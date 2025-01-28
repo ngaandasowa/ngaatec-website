@@ -73,7 +73,7 @@ const ContactPage = () => {
       <header
         className="relative bg-cover bg-center h-[50vh] text-center"
         style={{
-          backgroundImage: "url('/contact-us.jpeg')",
+          backgroundImage: "url('/contact.webp')",
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-40 flex justify-center items-center">

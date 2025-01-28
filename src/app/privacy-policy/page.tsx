@@ -10,7 +10,7 @@ const PrivacyPolicy = () => {
       <header
         className="relative bg-cover bg-center h-[50vh] text-center"
         style={{
-          backgroundImage: "url('/privacy-policy-banner.jpeg')", // Update the path to your image
+          backgroundImage: "url('/privacy_banner.webp')", // Update the path to your image
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-40 flex justify-center items-center">

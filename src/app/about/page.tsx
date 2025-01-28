@@ -48,7 +48,7 @@ const About: React.FC = () => {
       <header
         className="relative bg-cover bg-center h-[50vh] text-center"
         style={{
-          backgroundImage: "url('/about-us.jpeg')", // Update the path to your image
+          backgroundImage: "url('/about_ngaatec.webp')", // Update the path to your image
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-40 flex justify-center items-center">
@@ -67,38 +67,40 @@ const About: React.FC = () => {
       <main className="py-12 px-4 sm:px-8" id="about-section">
         {/* Who We Are Section */}
         <section className="flex flex-col sm:flex-row items-center sm:space-x-8 mb-12">
-          <motion.div
-            className="w-full sm:w-1/2 mt-6 sm:mt-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Who We Are</h2>
-            <p className="text-lg text-gray-600">
-              Ngaatec Private Limited is an ICT company committed to providing
-              quality computer repair and related services. Our mission is to make
-              technology simple and accessible for everyone.
-            </p>
-            <p className="text-lg text-gray-600 mt-4">
+        {/* Content on the left for desktop, above for mobile */}
+        <motion.div
+          className="w-full sm:w-1/2 mt-6 sm:mt-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">Who We Are</h2>
+          <p className="text-lg text-gray-600">
+            Ngaatec Private Limited is an ICT company committed to providing
+            quality computer repair and related services. Our mission is to make
+            technology simple and accessible for everyone.
+          </p>
+          <p className="text-lg text-gray-600 mt-4">
             &quot;The world of simple technology&quot; – this is the core of who we are.
-            </p>
+          </p>
+        </motion.div>
 
-            <motion.div
-            className="w-full sm:w-1/2 h-full"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            >
-            <Image
-              src="/about-us.jpg" // Update with actual image path
-              alt="Ngaatec"
-              width={500} // Set appropriate width
-              height={500} // Set appropriate height
-              className="w-full h-full rounded-lg shadow-lg object-cover"
-            />
-            </motion.div>
-            </motion.div>
-        </section>
+        {/* Image on the right for desktop, below for mobile */}
+        <motion.div
+          className="w-full sm:w-1/2 mt-6 sm:mt-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <Image
+            src="/about_us.webp" // Update with actual image path
+            alt="Ngaatec"
+            width={500} // Set appropriate width
+            height={500} // Set appropriate height
+            className="w-full h-full rounded-lg shadow-lg object-cover"
+          />
+        </motion.div>
+      </section>
 
         {/* Vision & Mission Section */}
         <section className="bg-blue-50 text-center mb-12 p-8 rounded-lg">
@@ -203,6 +205,8 @@ const About: React.FC = () => {
         src="/ngaatec.svg" // Replace with your logo path
         alt="Ngaatec Logo"
         className="w-16 h-16" // Adjust size as needed
+        width={500}
+        height={500}
       />
     </motion.div>
 

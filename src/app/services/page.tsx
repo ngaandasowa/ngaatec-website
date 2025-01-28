@@ -98,7 +98,7 @@ const ServicesPage = () => {
       <header
         className="relative bg-cover bg-center h-[50vh] text-center"
         style={{
-          backgroundImage: "url('/our-services-banner.jpeg')",
+          backgroundImage: "url('/services.webp')",
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-40 flex justify-center items-center">
