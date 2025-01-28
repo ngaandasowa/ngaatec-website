@@ -3,7 +3,7 @@
 import Head from 'next/head';
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
-import { FaFacebook, FaTwitter, FaLinkedin, FaPhone, FaWhatsapp, FaVideo, FaFingerprint, FaDoorOpen, FaSatelliteDish, FaArrowRight, FaWrench, FaNetworkWired, FaGlobe, FaSpinner } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaLinkedin, FaPhone, FaWhatsapp, FaVideo, FaArrowRight, FaWrench, FaGlobe, FaSpinner } from "react-icons/fa";
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from "swiper/react";
