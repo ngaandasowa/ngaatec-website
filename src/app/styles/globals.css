@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/font/SamsungSharpSans.woff') format('woff'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/font/SamsungSharpSans-Medium.woff') format('woff');
+  font-weight: 500; /* Medium weight */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/font/SamsungSharpSans-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Custom global styles */
+body {
+  font-family: 'CustomFont', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Medium font */
+.medium-text {
+  font-family: 'CustomFont', sans-serif;
+  font-weight: 500; /* Medium weight */
+}
+
+strong, b {
+  font-family: 'CustomFont', sans-serif;
+  font-weight: bold;  /* Bold weight */
+}
+
+.Branding-module__inline--DrMTH {
+  display: none;
+  align-items: center;
+}
+
+.animate-border {
+  background: linear-gradient(90deg, #1e40af, #9333ea, #1e40af);
+  background-size: 300% 300%;
+  animation: border-animation 3s infinite;
+  mask: linear-gradient(white, white) content-box, linear-gradient(white, white);
+  -webkit-mask: linear-gradient(white, white) content-box, linear-gradient(white, white);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+}
+
+@keyframes border-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Global Styles */
+.navbar {
+  position: sticky; /* Ensure navbar sticks to the top */
+  top: 0;
+  z-index: 50; /* Ensure navbar is above hero content */
+  background-color: transparent; /* Force transparency */
+  color: white;
+  padding: 1rem;
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.hero-section {
+  margin-top: 0; /* Avoid unintended spacing between navbar and hero */
+  padding-top: 0; /* Reset padding if any */
+}
+
+.hero-section .grid-lines {
+  opacity: 0.1; /* Make the grid lines faint */
+}
+
+.hero-section .bg-cover {
+  background-position: center center; /* Ensure the image is not stretching weirdly */
+  background-size: cover; /* Ensure proper scaling for all screens */
+}
+
+.hero-section .bg-black {
+  opacity: 0.6; /* Slightly darken overlay to hide visual artifacts */
+}
+
+
+@media (max-width: 768px) {
+  .navbar {
+    position: fixed; /* Fix navbar on top for smaller screens */
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  }
+
+  .hero-section {
+    padding-top: 4rem; /* Add space for fixed navbar height */
+  }
+
+  .hero-section .grid-lines {
+    opacity: 0.05; /* Reduce visibility further for smaller screens */
+  }
+
+  .hero-section .bg-cover {
+    background-position: center top; /* Adjust for better visual balance */
+  }
+}
