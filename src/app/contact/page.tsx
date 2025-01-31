@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-import ReCAPTCHA from "react-google-recaptcha";
 
 interface FormData {
   name: string;
@@ -19,30 +18,60 @@ const ContactPage = () => {
   const formRef = React.useRef<HTMLFormElement>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [phone, setPhone] = useState<string | undefined>("");
-  const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
+  const [mathQuiz, setMathQuiz] = useState({ question: "", answer: 0 });
+  const [userAnswer, setUserAnswer] = useState<string>("");
+  const [isVerified, setIsVerified] = useState<boolean>(false);
+  const [showQuiz, setShowQuiz] = useState<boolean>(false); // State to control quiz popup visibility
 
-  const handleRecaptchaChange = (value: string | null) => {
-    setRecaptchaValue(value);
+  // Generate a random math quiz
+  const generateMathQuiz = () => {
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    const operators = ["+", "-", "*"];
+    const operator = operators[Math.floor(Math.random() * operators.length)];
+    const question = `${num1} ${operator} ${num2}`;
+    const answer = eval(question); // Calculate the correct answer
+    setMathQuiz({ question, answer });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
+  // Verify the user's answer and submit the form if correct
+  const verifyAnswerAndSubmit = async () => {
+    const response = await fetch("/api/verifyQuiz", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userAnswer: parseInt(userAnswer), correctAnswer: mathQuiz.answer }),
+    });
 
-    if (!recaptchaValue) {
-      setStatus("Please complete the reCAPTCHA.");
-      setIsLoading(false);
-      return;
+    const result = await response.json();
+    if (result.verified) {
+      setIsVerified(true);
+      setStatus(""); // Clear any previous error messages
+      setShowQuiz(false); // Close the quiz popup
+
+      // Automatically submit the form after verification
+      if (formRef.current) {
+        const formData = new FormData(formRef.current); // Extract form data
+        const data: FormData = {
+          name: formData.get("name") as string,
+          email: formData.get("email") as string,
+          phone: phone || "",
+          topic: formData.get("topic") as string,
+          message: formData.get("message") as string,
+        };
+
+        // Submit the form data
+        await handleSubmit(data);
+      }
+    } else {
+      setStatus("Incorrect answer. Please try again.");
+      setUserAnswer(""); // Clear the input field
+      generateMathQuiz(); // Generate a new quiz
     }
+  };
 
-    const formData = new FormData(e.currentTarget);
-    const data: FormData = {
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      phone: phone || "",
-      topic: formData.get("topic") as string,
-      message: formData.get("message") as string,
-    };
+  // Handle form submission
+  const handleSubmit = async (data: FormData) => {
+    setIsLoading(true);
 
     // Validate email format
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
@@ -59,16 +88,6 @@ const ContactPage = () => {
     }
 
     try {
-      // Verify reCAPTCHA
-      const recaptchaResponse = await fetch(
-        `/api/verifyRecaptcha?response=${recaptchaValue}`,
-        { method: "POST" }
-      );
-      const recaptchaResult = await recaptchaResponse.json();
-      if (!recaptchaResult.success) {
-        throw new Error("reCAPTCHA verification failed.");
-      }
-
       // Submit form data
       const response = await fetch("/api/sendEmail", {
         method: "POST",
@@ -81,7 +100,9 @@ const ContactPage = () => {
       if (response.ok && formRef.current) {
         formRef.current.reset(); // Clear the form
         setPhone(""); // Clear the phone state
-        setRecaptchaValue(null); // Reset reCAPTCHA
+        setIsVerified(false); // Reset verification
+        setUserAnswer(""); // Clear the quiz answer
+        generateMathQuiz(); // Generate a new quiz
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -90,6 +111,11 @@ const ContactPage = () => {
       setIsLoading(false);
     }
   };
+
+  // Generate a new quiz when the component mounts
+  React.useEffect(() => {
+    generateMathQuiz();
+  }, []);
 
   return (
     <div className="bg-black text-white min-h-screen">
@@ -123,7 +149,25 @@ const ContactPage = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
-            <form ref={formRef} onSubmit={handleSubmit}>
+            <form
+              ref={formRef}
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (!isVerified) {
+                  setShowQuiz(true); // Show quiz popup if not verified
+                } else {
+                  const formData = new FormData(e.currentTarget);
+                  const data: FormData = {
+                    name: formData.get("name") as string,
+                    email: formData.get("email") as string,
+                    phone: phone || "",
+                    topic: formData.get("topic") as string,
+                    message: formData.get("message") as string,
+                  };
+                  handleSubmit(data); // Submit form data
+                }
+              }}
+            >
               <div className="mb-4">
                 <label className="block text-sm font-medium">Name</label>
                 <input
@@ -178,12 +222,6 @@ const ContactPage = () => {
                   required
                 ></textarea>
               </div>
-              <div className="mb-4">
-                <ReCAPTCHA
-                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-                  onChange={handleRecaptchaChange}
-                />
-              </div>
               <button
                 type="submit"
                 className="w-full px-6 py-3 bg-white hover:bg-black hover:text-white text-black font-semibold rounded-lg shadow-md transition"
@@ -227,6 +265,31 @@ const ContactPage = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Quiz Popup */}
+      {showQuiz && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-[#212121] p-6 rounded-lg shadow-lg">
+            <h2 className="text-xl font-bold mb-4">Verify You Are Not a Robot</h2>
+            <p className="text-lg font-semibold mb-4">{mathQuiz.question} = ?</p>
+            <input
+              type="number"
+              value={userAnswer}
+              onChange={(e) => setUserAnswer(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 bg-black bg-opacity-10 border border-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black"
+              placeholder="Your answer"
+              required
+            />
+            <button
+              type="button"
+              onClick={verifyAnswerAndSubmit}
+              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Verify
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Loading Overlay */}
       {isLoading && (
