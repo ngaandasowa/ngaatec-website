@@ -63,7 +63,7 @@ const CompanyDocuments = () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 text-white min-h-screen">
       {/* Hero Section */}
       <header
         className="relative bg-cover bg-center h-[50vh] text-center"
@@ -82,15 +82,15 @@ const CompanyDocuments = () => {
       </header>
 
       {/* Documents Section */}
-      <div className="max-w-4xl mx-auto px-4 py-12">
+      <div className="bg-black  mx-auto px-4 py-12">
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="bg-white p-8 rounded-lg shadow-lg"
+          className="bg-white bg-opacity-5 border border-white p-8 rounded-lg shadow-lg"
         >
           <h2 className="text-2xl font-bold mb-6">Available Documents</h2>
-          <p className="mb-6 text-gray-700">
+          <p className="mb-6">
             Below is a list of legal and compliance documents available for download. Please note that access to these documents is restricted to authorized users only. Click on a document to proceed.
           </p>
 
@@ -101,7 +101,7 @@ const CompanyDocuments = () => {
                 key={doc.id}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="p-4 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors"
+                className="p-4 bg-white rounded-lg cursor-pointer hover:bg-gray-200 transition-colors"
                 onClick={() => handleDocumentClick(doc)}
               >
                 <h3 className="text-lg font-semibold text-gray-800">{doc.title}</h3>
@@ -135,14 +135,14 @@ const CompanyDocuments = () => {
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             maxWidth: '90%',
             width: '400px',
-            backgroundColor: 'white',
+            backgroundColor: '#212121',
           },
         }}
       >
         {/* Close Icon */}
         <button
           onClick={closeModal}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
+          className="absolute top-4 right-4 text-white hover:text-wheat"
           aria-label="Close Modal"
         >
           &#10005; {/* Unicode for "X" */}
@@ -151,27 +151,27 @@ const CompanyDocuments = () => {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="bg-white p-8 rounded-lg shadow-lg"
+          className="bg-black bg-opacity-10 text-white p-8 rounded-lg shadow-lg"
         >
           <h2 className="text-2xl font-bold mb-4">Download Document</h2>
-          <p className="mb-6 text-gray-700">
+          <p className="mb-6">
             You are about to download: <strong>{selectedDocument?.title}</strong>. To ensure security, please verify that you are not a robot.
           </p>
 
           {!isVerified && (
             <div className="mb-6">
-              <p className="text-gray-700 mb-2">Solve the following math problem:</p>
+              <p className="mb-2">Solve the following math problem:</p>
               <p className="text-lg font-semibold mb-4">{mathQuiz.question} = ?</p>
               <input
                 type="number"
                 value={userAnswer}
                 onChange={(e) => setUserAnswer(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-lg"
+                className="w-full p-2 bg-black bg-opacity-10 border border-white rounded-lg"
                 placeholder="Your answer"
               />
               <button
                 onClick={verifyAnswer}
-                className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="mt-4 px-4 py-2 bg-white text-black hover:bg-[#212121] hover:text-white border hover-border-white rounded-lg transition-colors"
               >
                 Verify
               </button>
@@ -182,13 +182,13 @@ const CompanyDocuments = () => {
             <div className="flex justify-end space-x-4">
               <button
                 onClick={closeModal}
-                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition-colors"
+                className="px-4 py-2 text-white border border-white hover:bg-white hover:text-black rounded-lg transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={handleDownload}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-4 py-2 bg-white text-black hover:bg-[#212121] hover:text-white border hover-border-white rounded-lg transition-colors"
               >
                 Download
               </button>

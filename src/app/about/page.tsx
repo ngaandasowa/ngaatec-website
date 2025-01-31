@@ -64,7 +64,7 @@ const About: React.FC = () => {
       </header>
 
       {/* About Section */}
-      <main className="py-12 px-4 sm:px-8" id="about-section">
+      <main className="py-12 px-4 sm:px-8 bg-black  text-white" id="about-section">
         {/* Who We Are Section */}
         <section className="flex flex-col sm:flex-row items-center sm:space-x-8 mb-12">
         {/* Content on the left for desktop, above for mobile */}
@@ -74,13 +74,13 @@ const About: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">Who We Are</h2>
-          <p className="text-lg text-gray-600">
+          <h2 className="text-3xl font-bold mb-4">Who We Are</h2>
+          <p className="text-lg">
             Ngaatec Private Limited is an ICT company committed to providing
             quality computer repair and related services. Our mission is to make
             technology simple and accessible for everyone.
           </p>
-          <p className="text-lg text-gray-600 mt-4">
+          <p className="text-lg mt-4">
             &quot;The world of simple technology&quot; – this is the core of who we are.
           </p>
         </motion.div>
@@ -103,27 +103,27 @@ const About: React.FC = () => {
       </section>
 
         {/* Vision & Mission Section */}
-        <section className="bg-blue-50 text-center mb-12 p-8 rounded-lg">
+        <section className="bg-white text-black text-center mb-12 p-8 rounded-lg">
           <motion.h3
-            className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 underline underline-white"
+            className="text-2xl sm:text-3xl font-bold mb-4 underline underline-white"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
             Our Vision
           </motion.h3>
-          <p className="text-lg text-gray-600 mb-6">
+          <p className="text-lg mb-6">
             To become the leading IT service provider in Zimbabwe and the go-to destination for reliable, affordable IT services.
           </p>
           <motion.h3
-            className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 underline underline-white"
+            className="text-2xl sm:text-3xl font-bold mb-4 underline underline-white"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
             Our Mission
           </motion.h3>
-          <p className="text-lg text-gray-600 mb-6">
+          <p className="text-lg mb-6">
             To provide high-quality, affordable IT services and solutions to our customers, ensuring customer satisfaction and excellence.
           </p>
         </section>
@@ -131,7 +131,7 @@ const About: React.FC = () => {
         {/* Our Principles Section */}
         <section className="mb-12">
           <motion.h3
-            className="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-6"
+            className="text-2xl sm:text-3xl font-bold text-white text-center mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
@@ -147,8 +147,8 @@ const About: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: index * 0.2 }}
               >
-                <h4 className="text-xl font-semibold text-gray-800">{principle}</h4>
-                <p className="text-gray-600">
+                <h4 className="text-xl text-black font-semibold">{principle}</h4>
+                <p className="text-black">
                   {/* Add your principle descriptions here */}
                   {principle === "Integrity" && "Fair, honest, and transparent conduct."}
                   {principle === "Innovation" && "Fearless and novel problem-solving."}
@@ -164,7 +164,7 @@ const About: React.FC = () => {
         {/* Separator Line */}
         <motion.hr
           id="separator-line"
-          className="border-t-2 border-black my-12 mx-auto w-4/5 md:w-1/2"
+          className="border border-white my-8 mx-auto w-4/5 md:w-1/2"
           initial={{ width: 0 }}
           animate={{ width: inView ? "100%" : "0%" }}
           transition={{ duration: 1, ease: "easeInOut" }}
@@ -173,78 +173,78 @@ const About: React.FC = () => {
         {/* History Section */}
         <section className="mb-12">
           <motion.h3
-            className="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-6"
+            className="text-2xl sm:text-3xl font-bold text-center mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
             Our History
           </motion.h3>
-          <p className="text-lg text-gray-600 mb-6">
+          <p className="text-lg mb-6">
             Since our establishment in 2021, Ngaatec Private Limited has been committed to providing reliable IT services including computer repair, hardware installation, upgrades, data recovery, and more.
           </p>
         </section>
 
         {/* Contact Section */}
-<section className="bg-blue-50 text-center p-6 rounded-lg">
-  <motion.div
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 1 }}
-  >
-    {/* Brand Logo */}
-    <motion.div
-      className="flex justify-center mb-6"
-      initial={{ scale: 0 }}
-      whileInView={{ scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-    >
-      <Image
-        src="/ngaatec.svg" // Replace with your logo path
-        alt="Ngaatec Logo"
-        className="w-16 h-16" // Adjust size as needed
-        width={500}
-        height={500}
-      />
-    </motion.div>
+        <section className="bg-white text-center p-6 rounded-lg">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            {/* Brand Logo */}
+            <motion.div
+              className="flex justify-center mb-6"
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <Image
+                src="/ngaatec.svg" // Replace with your logo path
+                alt="Ngaatec Logo"
+                className="w-16 h-16" // Adjust size as needed
+                width={500}
+                height={500}
+              />
+            </motion.div>
 
-    {/* Contact Heading */}
-    <motion.h3
-      className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1, delay: 0.4 }}
-    >
-      Contact Us
-    </motion.h3>
+            {/* Contact Heading */}
+            <motion.h3
+              className="text-2xl sm:text-3xl font-bold text-black mb-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.4 }}
+            >
+              Contact Us
+            </motion.h3>
 
-    {/* Contact Details */}
-    <motion.p
-      className="text-lg text-gray-600 mb-6"
-      initial={{ opacity: 0, x: -50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1, delay: 0.6 }}
-    >
-      Email:{" "}
-      <a href="mailto:hello@ngaatec.co.zw" className="text-blue-500">
-        hello@ngaatec.co.zw
-      </a>
-    </motion.p>
-    <motion.p
-      className="text-lg text-gray-600 mb-6"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1, delay: 1 }}
-    >
-      Cell: +263 71 712 9651 / +263 783 82757
-    </motion.p>
-  </motion.div>
-</section>
+            {/* Contact Details */}
+            <motion.p
+              className="text-lg text-black mb-6"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.6 }}
+            >
+              Email:{" "}
+              <a href="mailto:hello@ngaatec.co.zw" className="text-blue-500">
+                hello@ngaatec.co.zw
+              </a>
+            </motion.p>
+            <motion.p
+              className="text-lg text-black mb-6"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 1 }}
+            >
+              Cell: +263 71 712 9651 / +263 783 82757
+            </motion.p>
+          </motion.div>
+        </section>
       </main>
     </div>
   );

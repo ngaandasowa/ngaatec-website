@@ -5,30 +5,30 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6
 const Footer = () => {
 
   return (
-    <footer className="bg-gray-100 text-black">
+    <footer className="bg-black text-white">
       
       {/* Footer Content */}
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-wrap md:flex-nowrap justify-between items-start">
           {/* Company Info */}
           <div className="w-full md:w-1/2 text-center md:text-left mb-6 md:mb-0">
-            <h2 className="text-xl font-bold text-black mb-2">
+            <h2 className="text-xl font-bold mb-2">
               Ngaatec
             </h2>
             <p className="text-sm mr-2">
               We deliver innovative tech solutions, empowering businesses with IT services, web development, and security systems.
             </p>
             <div className="flex justify-center md:justify-start space-x-4 mt-4">
-              <a href="https://www.facebook.com/profile.php?id=61558544541726" className="text-black hover:text-[#0064FE]">
+              <a href="https://www.facebook.com/profile.php?id=61558544541726" className="hover:text-[#0064FE]">
                 <FaFacebook size={24} />
               </a>
-              <a href="https://www.instagram.com/ngaatec/" className="text-black hover:text-[#0064FE]">
+              <a href="https://www.instagram.com/ngaatec/" className="hover:text-[#0064FE]">
                 <FaInstagram size={24} />
               </a>
-              <a href="https://www.linkedin.com/company/91177843" className="text-black hover:text-[#0064FE]">
+              <a href="https://www.linkedin.com/company/91177843" className="hover:text-[#0064FE]">
                 <FaLinkedin size={24} />
               </a>
-                <a href="https://x.com/ngaatec" className="text-black hover:text-[#0064FE]">
+                <a href="https://x.com/ngaatec" className="hover:text-[#0064FE]">
                 <FaXTwitter size={24} />
                 </a>
             </div>

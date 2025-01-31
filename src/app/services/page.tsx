@@ -114,32 +114,32 @@ const ServicesPage = () => {
       </header>
 
       {/* Services Section */}
-      <section className="container mx-auto px-4 py-12">
+      <section className="bg-black text-white mx-auto px-4 py-12">
         {/* Primary Service - Computer Repair */}
         <div className="mb-12">
           <motion.div
-            className="bg-white rounded-lg shadow-lg overflow-hidden"
+            className="bg-[#212121] bg-opacity-30 rounded-lg shadow-lg overflow-hidden"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <div className="p-6">
               <h2 className="text-2xl font-bold mb-4">{services[0].title}</h2>
-              <p className="text-gray-600 mb-4">{services[0].description}</p>
+              <p className="mb-4">{services[0].description}</p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {services[0]?.packages?.map((pkg, index) => (
                   <div
                     key={index}
                     className={`p-4 border rounded-lg cursor-pointer ${
                       selectedPackage[services[0].id] === index
-                        ? 'border-blue-500 bg-blue-50'
+                        ? 'border-white bg-black bg-opacity-5 text-white'
                         : 'border-gray-200'
                     }`}
                     onClick={() => handlePackageSelect(services[0].id, null, index)}
                   >
-                    <h3 className="font-semibold">{pkg.name}</h3>
-                    <p className="text-blue-600 font-bold">{pkg.price}</p>
-                    <ul className="list-disc list-inside text-sm text-gray-600 mt-2">
+                    <h3 className="font-medium">{pkg.name}</h3>
+                    <p className="text-larger font-bold">{pkg.price}</p>
+                    <ul className="list-disc list-inside text-sm mt-2">
                       {pkg.features.map((feature, i) => (
                         <li key={i}>{feature}</li>
                       ))}
@@ -154,14 +154,14 @@ const ServicesPage = () => {
         {/* Security Solutions Section */}
         <div className="mb-12">
           <motion.div
-            className="bg-white rounded-lg shadow-lg overflow-hidden"
+            className="bg-[#212121] bg-opacity-30 rounded-lg shadow-lg overflow-hidden"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <div className="p-6">
               <h2 className="text-2xl font-bold mb-4">{services[1].title}</h2>
-              <p className="text-gray-600 mb-4">{services[1].description}</p>
+              <p className="mb-4">{services[1].description}</p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {services[1].services?.map((subService, subIndex) => (
                   <div key={subIndex}>
@@ -172,14 +172,14 @@ const ServicesPage = () => {
                           key={pkgIndex}
                           className={`p-4 border rounded-lg cursor-pointer ${
                             selectedPackage[`${services[1].id}-${subService.name}`] === pkgIndex
-                              ? 'border-blue-500 bg-blue-50'
+                              ? 'border-white bg-black bg-opacity-5 text-white'
                               : 'border-gray-200'
                           }`}
                           onClick={() => handlePackageSelect(services[1].id, subService.name, pkgIndex)}
                         >
-                          <h4 className="font-semibold">{pkg.name}</h4>
-                          <p className="text-blue-600 font-bold">{pkg.price}</p>
-                          <ul className="list-disc list-inside text-sm text-gray-600 mt-2">
+                          <h4 className="font-medium">{pkg.name}</h4>
+                          <p className="text-larger font-bold">{pkg.price}</p>
+                          <ul className="list-disc list-inside text-sm mt-2">
                             {pkg.features.map((feature, i) => (
                               <li key={i}>{feature}</li>
                             ))}
@@ -197,28 +197,28 @@ const ServicesPage = () => {
         {/* Graphic Design Section */}
         <div className="mb-12">
           <motion.div
-            className="bg-white rounded-lg shadow-lg overflow-hidden"
+            className="bg-[#212121] bg-opacity-30 rounded-lg shadow-lg overflow-hidden"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <div className="p-6">
               <h2 className="text-2xl font-bold mb-4">{services[5].title}</h2>
-              <p className="text-gray-600 mb-4">{services[5].description}</p>
+              <p className="mb-4">{services[5].description}</p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {services[5].packages?.map((pkg, index) => (
                   <div
                     key={index}
                     className={`p-4 border rounded-lg cursor-pointer ${
                       selectedPackage[services[5].id] === index
-                        ? 'border-blue-500 bg-blue-50'
+                        ? 'border-white bg-black bg-opacity-5'
                         : 'border-gray-200'
                     }`}
                     onClick={() => handlePackageSelect(services[5].id, null, index)}
                   >
-                    <h3 className="font-semibold">{pkg.name}</h3>
-                    <p className="text-blue-600 font-bold">{pkg.price}</p>
-                    <ul className="list-disc list-inside text-sm text-gray-600 mt-2">
+                    <h3 className="font-medium">{pkg.name}</h3>
+                    <p className="text-larger font-bold">{pkg.price}</p>
+                    <ul className="list-disc list-inside text-sm mt-2">
                       {pkg.features.map((feature, i) => (
                         <li key={i}>{feature}</li>
                       ))}
@@ -235,28 +235,28 @@ const ServicesPage = () => {
           {services.slice(2, 5).map((service) => (
             <motion.div
               key={service.id}
-              className="bg-white rounded-lg shadow-lg overflow-hidden"
+              className="bg-[#212121] bg-opacity-30 rounded-lg shadow-lg overflow-hidden"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
               <div className="p-6">
                 <h2 className="text-2xl font-bold mb-4">{service.title}</h2>
-                <p className="text-gray-600 mb-4">{service.description}</p>
+                <p className="mb-4">{service.description}</p>
                 <div className="space-y-4">
                   {service.packages?.map((pkg, index) => (
                     <div
                       key={index}
                       className={`p-4 border rounded-lg cursor-pointer ${
                         selectedPackage[service.id] === index
-                          ? 'border-blue-500 bg-blue-50'
+                          ? 'border-white bg-black bg-opacity-5'
                           : 'border-gray-200'
                       }`}
                       onClick={() => handlePackageSelect(service.id, null, index)}
                     >
                       <h3 className="font-semibold">{pkg.name}</h3>
-                      <p className="text-blue-600 font-bold">{pkg.price}</p>
-                      <ul className="list-disc list-inside text-sm text-gray-600 mt-2">
+                      <p className="text-larger font-bold">{pkg.price}</p>
+                      <ul className="list-disc list-inside text-sm mt-2">
                         {pkg.features.map((feature, i) => (
                           <li key={i}>{feature}</li>
                         ))}

@@ -23,6 +23,46 @@
   font-style: normal;
 }
 
+:root {
+  --primary-color: #fafafa;
+  --on-primary-color: #000;
+  --secondary-color: #484848;
+  --on-secondary-color: #fff;
+  --primary-container-color: #212121;
+  --on-primary-container-color: #212121;
+  --secondary-container-color: #161212;
+  --on-secondary-container-color: #303030;
+  --surface-dim-color: #000;
+  --surface-color: #000;
+  --surface-bright-color: #212121;
+  --surface-transparent-color: hsla(0,0%,100%,0.050980392156862744);
+  --surface-container-lowest-color: #000;
+  --surface-container-low-color: #121212;
+  --surface-container-color: #171717;
+  --surface-container-high-color: #1e1e1e;
+  --surface-container-highest-color: #212121;
+  --on-surface-color: #fafafa;
+  --on-surface-variant-color: #6b6b6b;
+  --outline-color: #303030;
+  --outline-variant-color: #9e9e9e;
+  --outline-transparent-color: hsla(0,0%,100%,0.12156862745098039);
+  --inverse-surface-color: #fff;
+  --inverse-on-surface-color: #121212;
+  --inverse-primary-color: #000;
+  --scrim-color: #000;
+  --shadow-color: #000;
+  --error-color: #f2b8b5;
+  --on-error-color: #601410;
+  --error-container-color: #8c1d18;
+  --on-error-container-color: #fceeee;
+  --success-color: #d7feb4;
+  --on-success-color: #1a380a;
+  --success-container-color: #2d5016;
+  --on-success-container-color: #f8ffea;
+  --info-color: #071318;
+  --on-info-color: #b8e7fb;
+  --on-info-icon-color: #4fc3f7;
+}
 /* Custom global styles */
 body {
   font-family: 'CustomFont', sans-serif;
@@ -85,10 +125,6 @@ strong, b {
   padding-top: 0; /* Reset padding if any */
 }
 
-.hero-section .grid-lines {
-  opacity: 0.1; /* Make the grid lines faint */
-}
-
 .hero-section .bg-cover {
   background-position: center center; /* Ensure the image is not stretching weirdly */
   background-size: cover; /* Ensure proper scaling for all screens */
@@ -118,4 +154,28 @@ strong, b {
   .hero-section .bg-cover {
     background-position: center top; /* Adjust for better visual balance */
   }
+}
+.text-larger{
+  font-size: x-large;
+}
+.descri{
+  font-size: x-large;
+}
+.PhoneInputInput {
+  margin-top: 0.25rem;
+  display: block;
+  width: 100%;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  outline: none;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+option{
+  background-color: #212121;
 }

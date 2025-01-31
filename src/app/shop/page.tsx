@@ -29,20 +29,20 @@ const ShopPage: React.FC = () => {
       </header>
 
       {/* Main Content */}
-      <main className="py-12 px-4 sm:px-8">
+      <main className="py-12 px-4 sm:px-8 bg-black opacity-95 text-white">
         {/* WhatsApp Catalogue Section */}
         <section className="text-center">
           <h2 className="text-2xl sm:text-3xl font-bold mb-6">
             Our Products Are Exclusively on WhatsApp
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="mb-6">
             To explore our full product catalogue, please visit our WhatsApp store.
           </p>
           <a
             href={whatsappCatalogueLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-green-500 text-white py-3 px-6 rounded-md hover:bg-green-600 transition"
+            className="py-3 px-6 rounded-lg bg-white hover:bg-[#212121] hover:text-white text-black font-medium shadow-md transition"
           >
             Open WhatsApp Catalogue
           </a>

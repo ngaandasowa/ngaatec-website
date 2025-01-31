@@ -33,22 +33,33 @@ const SocialsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-900 to-gray-900 text-white py-20">
-      <div className="container mx-auto px-4">
-        <motion.h1
-          className="text-4xl sm:text-6xl font-bold text-center mb-12"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          Our Socials
-        </motion.h1>
+    <div>
+      {/* Hero Section */}
+            <header
+              className="relative bg-cover bg-center h-[50vh] sm:h-[50vh] md:h-[50vh] lg:h-[50vh] text-center"
+              style={{
+                backgroundImage: "url('/1738321665221.webp')", // Update the path to your image
+              }}
+            >
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex justify-center items-center">
+                <motion.h1
+                  className="text-white text-4xl sm:text-5xl font-bold ml-1 mr-1"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                >
+                  Our Social Media Accounts and follower count
+                </motion.h1>
+              </div>
+            </header>
+
+      <div className="bg-black text-white mx-auto px-8 py-8">
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {socials.map((social, index) => (
             <motion.div
               key={index}
-              className="bg-gray-800 p-6 rounded-lg shadow-lg text-center"
+              className="bg-[#212121] bg-opacity-30 border border-white rounded-lg shadow-lg overflow-hidden p-6 text-center"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -62,7 +73,7 @@ const SocialsPage = () => {
                 href={social.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition"
+                className="inline-block bg-white hover:bg-black hover:text-white border hover-border-white text-black font-semibold rounded-lg shadow-md transition px-6 py-2 rounded-lg"
               >
                 Visit {social.platform}
               </Link>

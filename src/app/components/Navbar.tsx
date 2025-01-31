@@ -53,7 +53,7 @@ const Navbar = () => {
       {/* Notification Section */}
       {showNotification && (
         <div
-          className="fixed top-0 left-0 w-full bg-[#0064FE] text-white py-4 px-4 md:px-8 flex justify-between items-center z-60"
+          className="fixed top-0 left-0 w-full bg-white text-black py-4 px-4 md:px-8 flex justify-between items-center z-60"
           style={{ zIndex: 1000 }} // Ensure notification is above navbar
         >
           <p className="text-sm font-bold">
@@ -62,13 +62,13 @@ const Navbar = () => {
           <div className="flex items-center">
             <button
               onClick={() => (window.location.href = "/shop")}
-              className="bg-blue-700 text-white mr-2 px-4 py-2 rounded-md hover:bg-blue-900 flex items-center justify-center"
+              className="bg-black text-white mr-2 px-4 py-2 rounded-md hover:bg-blue-900 flex items-center justify-center"
             >
               <FontAwesomeIcon icon={faShoppingCart} />
             </button>
             <button
               onClick={closeNotification}
-              className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-900 flex items-center justify-center"
+              className="bg-black text-white px-4 py-2 rounded-md hover:bg-blue-900 flex items-center justify-center"
             >
               <FontAwesomeIcon icon={faTimes} />
             </button>
@@ -80,7 +80,7 @@ const Navbar = () => {
       <nav
         className={`fixed w-full text-white py-4 z-50 transition-all duration-300 ease-in-out ${
           showNavbar ? "translate-y-0" : "-translate-y-full"
-        } ${isScrolled ? "bg-gray-800" : "bg-transparent"}`}
+        } ${isScrolled ? "bg-black" : "bg-transparent"}`}
         style={{
           top: showNotification ? "64px" : "0", // Adjust top position based on notification visibility
           transition: "top 0.3s ease-out, background-color 0.3s ease-out",
@@ -90,7 +90,7 @@ const Navbar = () => {
           <h1 className="text-lg font-bold">Ngaatec</h1>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-6">
+          <div className="hidden md:flex space-x-6 font-bold">
             <Link href="/" legacyBehavior>
               <a
                 className={`hover:text-blue-400 transition ${
@@ -148,7 +148,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Icon */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center font-bold">
             <Link href="/shop" legacyBehavior>
               <a>
                 <FaShoppingCart size={24} className="mr-4" />
@@ -176,9 +176,9 @@ const Navbar = () => {
         {isOpen && (
           <div
             ref={menuRef}
-            className="md:hidden absolute top-0 left-0 w-full bg-gray-800 text-white py-4 shadow-md z-50 animate-slide-down"
+            className="md:hidden absolute top-0 left-0 w-full bg-black text-white py-4 shadow-md z-50 animate-slide-down"
           >
-            <div className="flex flex-col items-center space-y-4">
+            <div className="flex flex-col items-center space-y-4 font-bold">
               <Link href="/" legacyBehavior>
                 <a
                   onClick={closeMenu}
