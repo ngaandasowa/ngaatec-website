@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
@@ -13,60 +13,88 @@ interface FormData {
   message: string;
 }
 
+interface QuizState {
+  question: string;
+  answer: number;
+  userAnswer: string;
+  isVerified: boolean;
+  showQuiz: boolean;
+}
+
 const ContactPage = () => {
   const [status, setStatus] = useState<string>("");
-  const formRef = React.useRef<HTMLFormElement>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [phone, setPhone] = useState<string | undefined>("");
-  const [mathQuiz, setMathQuiz] = useState({ question: "", answer: 0 });
-  const [userAnswer, setUserAnswer] = useState<string>("");
-  const [isVerified, setIsVerified] = useState<boolean>(false);
-  const [showQuiz, setShowQuiz] = useState<boolean>(false); // State to control quiz popup visibility
+  const [quizState, setQuizState] = useState<QuizState>({
+    question: "",
+    answer: 0,
+    userAnswer: "",
+    isVerified: false,
+    showQuiz: false,
+  });
+  const formRef = React.useRef<HTMLFormElement>(null);
 
   // Generate a random math quiz
-  const generateMathQuiz = () => {
+  const generateMathQuiz = useCallback(() => {
     const num1 = Math.floor(Math.random() * 10) + 1;
     const num2 = Math.floor(Math.random() * 10) + 1;
     const operators = ["+", "-", "*"];
     const operator = operators[Math.floor(Math.random() * operators.length)];
     const question = `${num1} ${operator} ${num2}`;
-    const answer = eval(question); // Calculate the correct answer
-    setMathQuiz({ question, answer });
+    const answer = calculateAnswer(num1, num2, operator); // Safer alternative to eval
+    setQuizState((prev) => ({ ...prev, question, answer }));
+  }, []);
+
+  // Calculate the answer safely
+  const calculateAnswer = (num1: number, num2: number, operator: string): number => {
+    switch (operator) {
+      case "+":
+        return num1 + num2;
+      case "-":
+        return num1 - num2;
+      case "*":
+        return num1 * num2;
+      default:
+        return 0;
+    }
   };
 
   // Verify the user's answer and submit the form if correct
   const verifyAnswerAndSubmit = async () => {
+    const { userAnswer, answer } = quizState;
     const response = await fetch("/api/verifyQuiz", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userAnswer: parseInt(userAnswer), correctAnswer: mathQuiz.answer }),
+      body: JSON.stringify({ userAnswer: parseInt(userAnswer), correctAnswer: answer }),
     });
 
     const result = await response.json();
     if (result.verified) {
-      setIsVerified(true);
+      setQuizState((prev) => ({ ...prev, isVerified: true, showQuiz: false }));
       setStatus(""); // Clear any previous error messages
-      setShowQuiz(false); // Close the quiz popup
 
       // Automatically submit the form after verification
       if (formRef.current) {
-        const formData = new FormData(formRef.current); // Extract form data
-        const data: FormData = {
-          name: formData.get("name") as string,
-          email: formData.get("email") as string,
-          phone: phone || "",
-          topic: formData.get("topic") as string,
-          message: formData.get("message") as string,
-        };
-
-        // Submit the form data
-        await handleSubmit(data);
+        const formData = getFormData(formRef.current);
+        await handleSubmit(formData);
       }
     } else {
       setStatus("Incorrect answer. Please try again.");
-      setUserAnswer(""); // Clear the input field
+      setQuizState((prev) => ({ ...prev, userAnswer: "" })); // Clear the input field
       generateMathQuiz(); // Generate a new quiz
     }
+  };
+
+  // Extract form data
+  const getFormData = (form: HTMLFormElement): FormData => {
+    const formData = new FormData(form);
+    return {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      phone: phone || "",
+      topic: formData.get("topic") as string,
+      message: formData.get("message") as string,
+    };
   };
 
   // Handle form submission
@@ -100,8 +128,7 @@ const ContactPage = () => {
       if (response.ok && formRef.current) {
         formRef.current.reset(); // Clear the form
         setPhone(""); // Clear the phone state
-        setIsVerified(false); // Reset verification
-        setUserAnswer(""); // Clear the quiz answer
+        setQuizState((prev) => ({ ...prev, isVerified: false, userAnswer: "" })); // Reset quiz state
         generateMathQuiz(); // Generate a new quiz
       }
     } catch (error) {
@@ -113,18 +140,16 @@ const ContactPage = () => {
   };
 
   // Generate a new quiz when the component mounts
-  React.useEffect(() => {
+  useEffect(() => {
     generateMathQuiz();
-  }, []);
+  }, [generateMathQuiz]);
 
   return (
     <div className="bg-black text-white min-h-screen">
       {/* Hero Section */}
       <header
         className="relative bg-cover bg-center h-[50vh] text-center"
-        style={{
-          backgroundImage: "url('/contact.webp')",
-        }}
+        style={{ backgroundImage: "url('/contact.webp')" }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-40 flex justify-center items-center">
           <motion.h1
@@ -153,18 +178,11 @@ const ContactPage = () => {
               ref={formRef}
               onSubmit={(e) => {
                 e.preventDefault();
-                if (!isVerified) {
-                  setShowQuiz(true); // Show quiz popup if not verified
+                if (!quizState.isVerified) {
+                  setQuizState((prev) => ({ ...prev, showQuiz: true })); // Show quiz popup if not verified
                 } else {
-                  const formData = new FormData(e.currentTarget);
-                  const data: FormData = {
-                    name: formData.get("name") as string,
-                    email: formData.get("email") as string,
-                    phone: phone || "",
-                    topic: formData.get("topic") as string,
-                    message: formData.get("message") as string,
-                  };
-                  handleSubmit(data); // Submit form data
+                  const formData = getFormData(e.currentTarget);
+                  handleSubmit(formData); // Submit form data
                 }
               }}
             >
@@ -267,15 +285,15 @@ const ContactPage = () => {
       </div>
 
       {/* Quiz Popup */}
-      {showQuiz && (
+      {quizState.showQuiz && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-[#212121] p-6 rounded-lg shadow-lg">
             <h2 className="text-xl font-bold mb-4">Verify You Are Not a Robot</h2>
-            <p className="text-lg font-semibold mb-4">{mathQuiz.question} = ?</p>
+            <p className="text-lg font-semibold mb-4">{quizState.question} = ?</p>
             <input
               type="number"
-              value={userAnswer}
-              onChange={(e) => setUserAnswer(e.target.value)}
+              value={quizState.userAnswer}
+              onChange={(e) => setQuizState((prev) => ({ ...prev, userAnswer: e.target.value }))}
               className="mt-1 block w-full px-3 py-2 bg-black bg-opacity-10 border border-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black"
               placeholder="Your answer"
               required
