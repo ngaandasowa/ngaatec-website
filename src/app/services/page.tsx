@@ -227,10 +227,6 @@ const ServicesPage: React.FC = () => {
   const [selectedPackage, setSelectedPackage] = useState<Record<number, number>>({});
   const [desiredDomain, setDesiredDomain] = useState<string>("");
 
-  const handlePackageSelect = (serviceId: number, packageIndex: number) => {
-    setSelectedPackage((prev) => ({ ...prev, [serviceId]: packageIndex }));
-  };
-
   return (
     <div>
       {/* Banner */}
@@ -273,9 +269,7 @@ const ServicesPage: React.FC = () => {
                       selectedPackage[service.id] === index
                         ? "border-white bg-white bg-opacity-10"
                         : "border-gray-500"
-                    }`}
-                   /* onClick={() => handlePackageSelect(service.id, index)} */
-                  >
+                    }`}                  >
                     {/* Header & Popular Badge */}
                     <div className="flex justify-between items-center mb-4">
                       <h3 className="text-lg font-semibold">{pkg.name}</h3>
