@@ -306,7 +306,7 @@ const ServicesPage: React.FC = () => {
               </div>
 
               {/* Domain Check Section */}
-              {service.id === 3 && (
+              {service.id === 2 && (
                 <div className="mt-6">
                   <h3 className="text-xl font-semibold mb-2">Find Your Perfect Domain Name</h3>
                   <div className="flex flex-col sm:flex-row gap-2">

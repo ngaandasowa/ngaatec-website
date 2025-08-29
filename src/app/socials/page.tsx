@@ -7,28 +7,28 @@ const SocialsPage = () => {
   const socials = [
     {
       platform: "LinkedIn",
-      followers: "2.0K+",
+      followers: "2000+",
       link: "https://www.linkedin.com/company/91177843",
     },
     {
       platform: "X (Twitter)",
-      followers: "700",
+      followers: "700+",
       link: "https://x.com/ngaatec",
     },
     {
       platform: "Instagram",
-      followers: "368",
+      followers: "300+",
       link: "https://www.instagram.com/ngaatec/",
     },
     {
       platform: "Facebook",
-      followers: "89",
+      followers: "100+",
       link: "https://www.facebook.com/profile.php?id=61558544541726",
     },
     {
       platform: "WhatsApp Channel",
-      followers: "90",
-      link: "https://whatsapp.com/channel/0029VaNYndRId7nHQYQ75n2F",
+      followers: "25+",
+      link: "https://whatsapp.com/channel/0029Vb6Wfe96GcGJgxGjSm0U",
     },
   ];
 
