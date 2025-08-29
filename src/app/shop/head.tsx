@@ -5,7 +5,7 @@ export const metadata = {
     title: "Ngaatec Online Store",
     description: "Explore our full product catalogue on WhatsApp.",
     type: "website",
-    url: "https://yourdomain.com/shop",
+    url: "https://ngaatec.co.zw/shop",
     images: [
       {
         url: "https://ngaatec.co.zw/online_store.webp",
