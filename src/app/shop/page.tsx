@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const ShopPage: React.FC = () => {
   // WhatsApp catalogue link
-  const whatsappCatalogueLink = "https://wa.me/c/263783827570"; // Replace with your actual link
+  const whatsappCatalogueLink = "https://wa.me/c/263778963038"; // Replace with your actual link
 
   return (
     <div>
