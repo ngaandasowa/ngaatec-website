@@ -1,35 +1,44 @@
-"use client";
-
 import "./styles/globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Head from "next/head";
-import Notification from "./components/Notification";
+import Notification from "./components/Notification"; // still client component
+
+export const metadata = {
+  title: "Ngaatec",
+  description: "The world of simple technology",
+  openGraph: {
+    title: "Ngaatec",
+    description: "Ngaatec Private Limited official website.",
+    type: "website",
+    url: "https://ngaatec.co.zw/ngaatec_motto.webp",
+    images: [
+      {
+        url: "https://ngaatec.co.zw/ngaatec_motto.webp",
+        width: 1200,
+        height: 630,
+        alt: "Ngaatec",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ngaatec",
+    description: "The world of simple technology",
+    images: ["https://ngaatec.co.zw/ngaatec_motto.webp"],
+  },
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <Head>
-        <title>Ngaatec</title>
-        <meta name="description" content="the world of simple technology" />
-        <meta property="og:title" content="Ngaatec" />
-        <meta property="og:description" content="Ngaatec Private Limited official website." />
-        
-        <meta property="og:type" content="website" />
-        <link rel="icon" href="/favicon.ico" />
-        
-      </Head>
-      <html lang="en">
-        <body>
-          {/* Notification */}
-          <Notification />
+    <html lang="en">
+      <body>
+        {/* Client-only component */}
+        <Notification />
 
-          {/* Main Layout */}
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </body>
-      </html>
-    </>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+      </body>
+    </html>
   );
 }
