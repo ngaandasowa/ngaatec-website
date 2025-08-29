@@ -224,7 +224,7 @@ const ServicesPage: React.FC = () => {
 
   ];
 
-  const [selectedPackage, setSelectedPackage] = useState<Record<number, number>>({});
+  const [selectedPackage] = useState<Record<number, number>>({});
   const [desiredDomain, setDesiredDomain] = useState<string>("");
 
   return (
