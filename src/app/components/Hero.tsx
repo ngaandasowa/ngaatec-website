@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
-import { FaFacebook, FaTwitter, FaLinkedin, FaPhone, FaWhatsapp, FaVideo, FaArrowRight, FaWrench, FaGlobe, FaSpinner } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaLinkedin, FaPhone, FaWhatsapp, FaArrowRight, FaShieldAlt, FaGlobe, FaLaptop, FaPaintBrush, FaSpinner } from "react-icons/fa";
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -320,27 +320,33 @@ export default function Hero() {
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4">What We Offer</h2>
         <p className="text-lg mb-8">
-          At Ngaatec, we take pride in delivering reliable and innovative solutions tailored to your needs.
+          At Ngaatec, we power your brand with digital solutions that stand out.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 m-4">
           {[
             {
-              title: "Security Solutions",
+              title: "Website Design, Development & Hosting",
               description:
-                "Comprehensive security systems including intercom, CCTV, biometric access, and electric gates.",
-              icon: <FaVideo size={36} />,
-            },
-            {
-              title: "Repair & Maintenance",
-              description:
-                "Expert repair and maintenance services for all your devices and systems.",
-              icon: <FaWrench size={36} />,
-            },
-            {
-              title: "Technology Solutions",
-              description:
-                "Custom web development and tailored technology solutions for your business.",
+                "Modern, responsive websites built for your goals, with secure hosting and professional email solutions for companies and individuals.",
               icon: <FaGlobe size={36} />,
+            },
+            {
+              title: "Domain Management & Security",
+              description:
+                "Complete domain registration, management, and protection to keep your brand safe and accessible.",
+              icon: <FaShieldAlt size={36} />,
+            },
+            {
+              title: "Branding & Graphic Design",
+              description:
+                "Creative visuals and branding that capture attention and leave a lasting impression.",
+              icon: <FaPaintBrush size={36} />,
+            },
+            {
+              title: "Additional Services:",
+              description:
+                "Computer repairs, maintenance, and IT support for businesses and individuals.",
+              icon: <FaLaptop size={36} />,
             },
           ].map((service, index) => (
             <div

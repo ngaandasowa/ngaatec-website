@@ -1,273 +1,344 @@
 "use client";
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
-const ServicesPage = () => {
-  // Example data for services and packages
-  const services = [
+// Package and Service types
+type Package = {
+  name: string;
+  price: string;
+  features: string[];
+  popular?: boolean;
+};
+
+type Service = {
+  id: number;
+  title: string;
+  description: string;
+  packages: Package[];
+};
+
+const ServicesPage: React.FC = () => {
+  const services: Service[] = [
     {
       id: 1,
-      title: 'Computer Repair',
-      description: 'Fast and reliable computer repair services for all brands and models.',
+      title: "Web Hosting",
+      description: "Cloud Website Hosting made easy and affordable!",
       packages: [
-        { name: 'Diagnostics', price: '$50', features: ['Hardware Check', 'Software Check', 'Virus Scan'] },
-        { name: 'Basic Repair', price: '$100', features: ['Hardware Fix', 'Software Reinstall', 'Data Backup'] },
-        { name: 'Advanced Repair', price: '$200', features: ['Motherboard Repair', 'Data Recovery', 'Full System Tune-Up'] },
+        {
+          name: "Bronze",
+          price: "$3.95 /Month",
+          features: [
+            "1 Domain",
+            "1GB RAM",
+            "5GB SSD Storage",
+            "Unlimited Traffic",
+            "10 MySQL Databases",
+            "10 Secure Email Accounts",
+            "Unlimited Subdomains",
+            "Premium Email Delivery",
+            "Free SSL Certificate",
+          ],
+        },
+        {
+          name: "Silver",
+          price: "$7.95 /Month",
+          features: [
+            "5 Domains",
+            "3GB RAM",
+            "20GB SSD Storage",
+            "Unlimited Traffic",
+            "Unlimited MySQL Databases",
+            "Unlimited Secure Email Accounts",
+            "Unlimited Subdomains",
+            "Premium Email Delivery",
+            "Free SSL Certificate",
+          ],
+          popular: true,
+        },
+        {
+          name: "Gold",
+          price: "$11.95 /Month",
+          features: [
+            "Unlimited Domains",
+            "4GB RAM",
+            "100GB SSD Storage",
+            "Unlimited Traffic",
+            "Unlimited MySQL Databases",
+            "Unlimited Secure Email Accounts",
+            "Unlimited Subdomains",
+            "Premium Email Delivery",
+            "Free SSL Certificate",
+          ],
+        },
+        {
+          name: "Platinum",
+          price: "$15.95 /Month",
+          features: [
+            "Unlimited Domains",
+            "6GB RAM",
+            "300GB SSD Storage",
+            "Unlimited Traffic",
+            "Unlimited MySQL Databases",
+            "Unlimited Secure Email Accounts",
+            "Unlimited Subdomains",
+            "Premium Email Delivery",
+            "Free SSL Certificate",
+          ],
+        },
       ],
     },
     {
       id: 2,
-      title: 'Security Solutions',
-      description: 'Comprehensive security solutions for homes and businesses.',
-      services: [
-        {
-          name: 'CCTV Installation',
-          packages: [
-            { name: 'Basic', price: '$300', features: ['2 Cameras', 'Local Storage', '1-Year Warranty'] },
-            { name: 'Advanced', price: '$600', features: ['4 Cameras', 'Cloud Storage', '2-Year Warranty'] },
-          ],
-        },
-        {
-          name: 'Biometric Access Control',
-          packages: [
-            { name: 'Standard', price: '$500', features: ['1 Door', 'Fingerprint Scanner', '1-Year Warranty'] },
-            { name: 'Premium', price: '$1000', features: ['2 Doors', 'Fingerprint + Card Access', '2-Year Warranty'] },
-          ],
-        },
-        {
-          name: 'Electric Gates & Fences',
-          packages: [
-            { name: 'Basic', price: '$800', features: ['Single Gate', 'Remote Control', '1-Year Warranty'] },
-            { name: 'Premium', price: '$1500', features: ['Double Gate', 'Smartphone Control', '2-Year Warranty'] },
-          ],
-        },
+      title: "Domain Registration",
+      description: "Secure your perfect domain name for your brand.",
+      packages: [
+        { name: ".co.zw", price: "$5/year", features: ["Domain Registration for .co.zw"], popular: true },
+        { name: ".com", price: "$25/year", features: ["Domain Registration for .com"] },
+        { name: ".org", price: "$30/year", features: ["Domain Registration for .org"] },
+        { name: "Other Domains", price: "Custom Pricing", features: ["Tell us your domain, and we'll provide a quote"] },
       ],
     },
     {
       id: 3,
-      title: 'Tech Support',
-      description: 'Professional tech support for individuals and businesses.',
+      title: "Website Designing",
+      description: "Custom, responsive websites that showcase your brand online.",
       packages: [
-        { name: 'Basic', price: '$100', features: ['Remote Support', '1-Hour Session', 'Email Support'] },
-        { name: 'Premium', price: '$200', features: ['On-Site Support', 'Unlimited Sessions', '24/7 Support'] },
+        {
+          name: "Basic",
+          price: "$60 – $100+",
+          features: [
+            "Pre-made template, lightly customized",
+            "Up to 5 pages",
+            "Contact form & social media links",
+            "Basic SEO setup",
+            "2 round of revisions",
+          ],
+        },
+        {
+          name: "Standard",
+          price: "$150 – $250+",
+          features: [
+            "Everything in Basic",
+            "Custom homepage design",
+            "Up to 15 pages",
+            "Blog & social media integration",
+            "Basic online store",
+            "Email marketing setup",
+            "3 rounds of revisions",
+          ],
+          popular: true,
+        },
+        {
+          name: "Premium",
+          price: "$300 – $500+",
+          features: [
+            "Everything in Standard",
+            "Fully custom design & branding",
+            "20+ pages",
+            "Advanced online store features",
+            "Custom animations & interactive elements",
+            "Content creation (text, images, blogs)",
+            "Ongoing maintenance & support",
+            "Unlimited revisions",
+          ],
+        },
+        {
+          name: "E-commerce",
+          price: "$600 – $1000+",
+          features: [
+            "Product catalog & shopping cart",
+            "Secure payment & shipping management",
+            "Customer accounts & order tracking",
+            "Inventory management system",
+            "Basic SEO & marketing tools",
+            "3 rounds of revisions",
+          ],
+        },
       ],
     },
     {
       id: 4,
-      title: 'Solar Systems',
-      description: 'Eco-friendly solar solutions for homes and businesses.',
+      title: "Branding & Graphic Design",
+      description: "Creative visuals that make your brand unforgettable.",
       packages: [
-        { name: 'Residential', price: '$2000', features: ['5kW System', 'Installation', '5-Year Warranty'] },
-        { name: 'Commercial', price: '$5000', features: ['10kW System', 'Installation', '10-Year Warranty'] },
+        { name: "Business Card", price: "$5", features: ["1 Concept", "2 Revisions", "Source Files"] },
+        { name: "Logo Design", price: "$10", features: ["2 Concepts", "Unlimited Revisions", "Source Files"] },
+        { name: "Flyer / Poster / Banner", price: "$10–$25", features: ["Custom Design", "Print-Ready"] },
+        { name: "Company Profile", price: "$30", features: ["Up to 10 Pages", "PDF Format", "Custom Design"], popular: true },
       ],
     },
     {
       id: 5,
-      title: 'Internet Setup',
-      description: 'Fast and reliable internet setup for homes and offices.',
+      title: "IT Support & Computer Repairs",
+      description: "Reliable IT support and professional computer repair services for individuals and businesses.",
       packages: [
-        { name: 'Basic', price: '$100', features: ['Router Setup', 'Wi-Fi Configuration', '1-Year Support'] },
-        { name: 'Advanced', price: '$200', features: ['Mesh Network Setup', 'Ethernet Wiring', '2-Year Support'] },
+        {
+          name: "Diagnostics & Troubleshooting",
+          price: "$10 - $50+",
+          features: [
+            "Full hardware diagnostics (CPU, GPU, RAM, motherboard)",
+            "Software troubleshooting & optimization",
+            "Virus, malware, and spyware removal",
+            "System performance tuning",
+            "Network diagnostics"
+          ],
+        },
+        {
+          name: "Hardware Repairs & Upgrades",
+          price: "$20 - $100+",
+          features: [
+            "Motherboard repair/replacement",
+            "Hard drive/SSD repair or replacement",
+            "RAM & GPU upgrades",
+            "Laptop screen replacement",
+            "Keyboard, touchpad, and peripheral repairs"
+          ],
+          popular: true,
+        },
+        {
+          name: "Data Recovery & Backup",
+          price: "$100 - $500+",
+          features: [
+            "Hard drive and SSD data recovery",
+            "RAID recovery",
+            "USB and external drive recovery",
+            "Cloud backup setup and restoration",
+            "Data migration between devices"
+          ],
+        },
+        {
+          name: "IT Support & Managed Services",
+          price: "$30 - $100+",
+          features: [
+            "Remote or on-site technical support",
+            "Network setup, monitoring, and troubleshooting",
+            "Software installation & licensing",
+            "Printer/scanner setup and maintenance",
+            "Cybersecurity and firewall management",
+            "Email and server management"
+          ],
+        },
       ],
     },
-    {
-      id: 6,
-      title: 'Graphic Design',
-      description: 'Creative graphic design services for branding and marketing.',
-      packages: [
-        { name: 'Company Profile (Basic)', price: '$30', features: ['Up to 10 Pages', 'Custom Design', 'PDF Format'] },
-        { name: 'Logo Design (Basic)', price: '$10', features: ['2 Concepts', 'Unlimited Revisions', 'Source Files'] },
-        { name: 'Flyer Design (Basic)', price: '$10', features: ['Single Side', 'Custom Design', 'Print-Ready'] },
-        { name: 'Poster Design (Basic)', price: '$20', features: ['Custom Design', 'Print-Ready', 'Source Files'] },
-        { name: 'Banner Design (Basic)', price: '$25', features: ['Custom Design', 'Print-Ready', 'Source Files'] },
-      ],
-    },
+
   ];
 
-  const [selectedPackage, setSelectedPackage] = useState<{ [key: string]: number }>({});
+  const [selectedPackage, setSelectedPackage] = useState<Record<number, number>>({});
+  const [desiredDomain, setDesiredDomain] = useState<string>("");
 
-  const handlePackageSelect = (serviceId: number, subServiceName: string | null, packageIndex: number) => {
-    const key = subServiceName ? `${serviceId}-${subServiceName}` : `${serviceId}`;
-    setSelectedPackage((prev) => ({ ...prev, [key]: packageIndex }));
+  const handlePackageSelect = (serviceId: number, packageIndex: number) => {
+    setSelectedPackage((prev) => ({ ...prev, [serviceId]: packageIndex }));
   };
 
   return (
     <div>
-      {/* Banner Section */}
+      {/* Banner */}
       <header
         className="relative bg-cover bg-center h-[50vh] text-center"
-        style={{
-          backgroundImage: "url('/services.webp')",
-        }}
+        style={{ backgroundImage: "url('/services.webp')" }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-40 flex justify-center items-center">
           <motion.h1
-            className="text-white text-4xl sm:text-5xl font-bold ml-1 mr-1"
+            className="text-white text-4xl sm:text-5xl font-bold"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            Here&apos;s What We Do
+            Our Services
           </motion.h1>
         </div>
       </header>
 
       {/* Services Section */}
-      <section className="bg-black text-white mx-auto px-4 py-12">
-        {/* Primary Service - Computer Repair */}
-        <div className="mb-12">
+      <section className="bg-black text-white mx-auto px-4 py-12 space-y-12">
+        {services.map((service) => (
           <motion.div
+            key={service.id}
             className="bg-[#212121] bg-opacity-30 rounded-lg shadow-lg overflow-hidden"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <div className="p-6">
-              <h2 className="text-2xl font-bold mb-4">{services[0].title}</h2>
-              <p className="mb-4">{services[0].description}</p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {services[0]?.packages?.map((pkg, index) => (
+              <h2 className="text-2xl font-bold mb-4">{service.title}</h2>
+              <p className="mb-6">{service.description}</p>
+
+              {/* Packages Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {service.packages.map((pkg, index) => (
                   <div
                     key={index}
-                    className={`p-4 border rounded-lg cursor-pointer ${
-                      selectedPackage[services[0].id] === index
-                        ? 'border-white bg-black bg-opacity-5 text-white'
-                        : 'border-gray-200'
+                    className={`relative p-6 border rounded-lg flex flex-col justify-between hover:scale-105 transition-transform ${
+                      selectedPackage[service.id] === index
+                        ? "border-white bg-white bg-opacity-10"
+                        : "border-gray-500"
                     }`}
-                    onClick={() => handlePackageSelect(services[0].id, null, index)}
+                   /* onClick={() => handlePackageSelect(service.id, index)} */
                   >
-                    <h3 className="font-medium">{pkg.name}</h3>
-                    <p className="text-larger font-bold">{pkg.price}</p>
-                    <ul className="list-disc list-inside text-sm mt-2">
-                      {pkg.features.map((feature, i) => (
-                        <li key={i}>{feature}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Security Solutions Section */}
-        <div className="mb-12">
-          <motion.div
-            className="bg-[#212121] bg-opacity-30 rounded-lg shadow-lg overflow-hidden"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="p-6">
-              <h2 className="text-2xl font-bold mb-4">{services[1].title}</h2>
-              <p className="mb-4">{services[1].description}</p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {services[1].services?.map((subService, subIndex) => (
-                  <div key={subIndex}>
-                    <h3 className="font-semibold text-lg mb-2">{subService.name}</h3>
-                    <div className="space-y-2">
-                      {subService.packages.map((pkg, pkgIndex) => (
-                        <div
-                          key={pkgIndex}
-                          className={`p-4 border rounded-lg cursor-pointer ${
-                            selectedPackage[`${services[1].id}-${subService.name}`] === pkgIndex
-                              ? 'border-white bg-black bg-opacity-5 text-white'
-                              : 'border-gray-200'
-                          }`}
-                          onClick={() => handlePackageSelect(services[1].id, subService.name, pkgIndex)}
-                        >
-                          <h4 className="font-medium">{pkg.name}</h4>
-                          <p className="text-larger font-bold">{pkg.price}</p>
-                          <ul className="list-disc list-inside text-sm mt-2">
-                            {pkg.features.map((feature, i) => (
-                              <li key={i}>{feature}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
+                    {/* Header & Popular Badge */}
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="text-lg font-semibold">{pkg.name}</h3>
+                      {pkg.popular && (
+                        <span className="bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded-full">
+                          Most Popular
+                        </span>
+                      )}
                     </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </div>
 
-        {/* Graphic Design Section */}
-        <div className="mb-12">
-          <motion.div
-            className="bg-[#212121] bg-opacity-30 rounded-lg shadow-lg overflow-hidden"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="p-6">
-              <h2 className="text-2xl font-bold mb-4">{services[5].title}</h2>
-              <p className="mb-4">{services[5].description}</p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {services[5].packages?.map((pkg, index) => (
-                  <div
-                    key={index}
-                    className={`p-4 border rounded-lg cursor-pointer ${
-                      selectedPackage[services[5].id] === index
-                        ? 'border-white bg-black bg-opacity-5'
-                        : 'border-gray-200'
-                    }`}
-                    onClick={() => handlePackageSelect(services[5].id, null, index)}
-                  >
-                    <h3 className="font-medium">{pkg.name}</h3>
-                    <p className="text-larger font-bold">{pkg.price}</p>
-                    <ul className="list-disc list-inside text-sm mt-2">
+                    {/* Price */}
+                    <p className="text-xl font-bold mb-3">{pkg.price}</p>
+
+                    {/* Features */}
+                    <ul className="list-disc list-inside text-sm space-y-1 mb-4">
                       {pkg.features.map((feature, i) => (
                         <li key={i}>{feature}</li>
                       ))}
                     </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </div>
 
-        {/* Other Services */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.slice(2, 5).map((service) => (
-            <motion.div
-              key={service.id}
-              className="bg-[#212121] bg-opacity-30 rounded-lg shadow-lg overflow-hidden"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="p-6">
-                <h2 className="text-2xl font-bold mb-4">{service.title}</h2>
-                <p className="mb-4">{service.description}</p>
-                <div className="space-y-4">
-                  {service.packages?.map((pkg, index) => (
-                    <div
-                      key={index}
-                      className={`p-4 border rounded-lg cursor-pointer ${
-                        selectedPackage[service.id] === index
-                          ? 'border-white bg-black bg-opacity-5'
-                          : 'border-gray-200'
-                      }`}
-                      onClick={() => handlePackageSelect(service.id, null, index)}
+                    {/* Order Button */}
+                    <a
+                      href={`https://wa.me/263783827570?text=${encodeURIComponent(
+                        `Hello, I would like to order the package "${pkg.name}" under the service "${service.title}".`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-auto block text-center bg-green-600 hover:bg-green-700 px-3 py-2 rounded text-sm font-semibold"
                     >
-                      <h3 className="font-semibold">{pkg.name}</h3>
-                      <p className="text-larger font-bold">{pkg.price}</p>
-                      <ul className="list-disc list-inside text-sm mt-2">
-                        {pkg.features.map((feature, i) => (
-                          <li key={i}>{feature}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
+                      Order Now
+                    </a>
+                  </div>
+                ))}
               </div>
-            </motion.div>
-          ))}
-        </div>
+
+              {/* Domain Check Section */}
+              {service.id === 3 && (
+                <div className="mt-6">
+                  <h3 className="text-xl font-semibold mb-2">Find Your Perfect Domain Name</h3>
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <input
+                      type="text"
+                      placeholder="Enter your desired domain"
+                      value={desiredDomain}
+                      onChange={(e) => setDesiredDomain(e.target.value)}
+                      className="flex-1 p-2 rounded border border-gray-300 text-black"
+                    />
+                    <a
+                      href={`https://wa.me/263783827570?text=${encodeURIComponent(
+                        `Hello, I want to check availability for the domain: ${desiredDomain}`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded"
+                    >
+                      Check Availability
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        ))}
       </section>
     </div>
   );

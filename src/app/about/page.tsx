@@ -76,9 +76,9 @@ const About: React.FC = () => {
         >
           <h2 className="text-3xl font-bold mb-4">Who We Are</h2>
           <p className="text-lg">
-            Ngaatec Private Limited is an ICT company committed to providing
-            quality computer repair and related services. Our mission is to make
-            technology simple and accessible for everyone.
+            Ngaatec Private Limited is a digital solutions company dedicated to making technology simple 
+            and impactful. We build stunning websites, provide secure hosting, professional emails, and 
+            creative branding — plus reliable IT support and computer repairs.
           </p>
           <p className="text-lg mt-4">
             &quot;The world of simple technology&quot; – this is the core of who we are.
@@ -113,7 +113,7 @@ const About: React.FC = () => {
             Our Vision
           </motion.h3>
           <p className="text-lg mb-6">
-            To become the leading IT service provider in Zimbabwe and the go-to destination for reliable, affordable IT services.
+            To be Zimbabwe’s leading digital solutions partner, empowering businesses and individuals with reliable, innovative, and affordable technology services.
           </p>
           <motion.h3
             className="text-2xl sm:text-3xl font-bold mb-4 underline underline-white"
@@ -124,7 +124,7 @@ const About: React.FC = () => {
             Our Mission
           </motion.h3>
           <p className="text-lg mb-6">
-            To provide high-quality, affordable IT services and solutions to our customers, ensuring customer satisfaction and excellence.
+            To provide high-quality websites, hosting, branding, and IT solutions that drive growth, ensure satisfaction, and uphold excellence.
           </p>
         </section>
 
@@ -181,7 +181,7 @@ const About: React.FC = () => {
             Our History
           </motion.h3>
           <p className="text-lg mb-6">
-            Since our establishment in 2021, Ngaatec Private Limited has been committed to providing reliable IT services including computer repair, hardware installation, upgrades, data recovery, and more.
+            Founded in 2021, Ngaatec began as an ICT company providing computer repair and IT services. Over the years, we have evolved into a full-service digital partner — offering website development, hosting, domain security, professional emails, and branding solutions — while still delivering trusted IT support to our community.
           </p>
         </section>
 
