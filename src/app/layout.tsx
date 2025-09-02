@@ -2,6 +2,7 @@ import "./styles/globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Notification from "./components/Notification"; // still client component
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata = {
   title: "Ngaatec",
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
