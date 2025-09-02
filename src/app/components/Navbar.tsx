@@ -25,8 +25,18 @@ const Navbar = () => {
   };
 
   const closeNotification = () => {
-    setShowNotification(false); // Close notification
+    setShowNotification(false);
+    // Save dismissal in localStorage
+    localStorage.setItem("notificationDismissed", "true");
   };
+
+  useEffect(() => {
+    // Check if user has dismissed notification before
+    const dismissed = localStorage.getItem("notificationDismissed");
+    if (dismissed === "true") {
+      setShowNotification(false);
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +64,7 @@ const Navbar = () => {
       {showNotification && (
         <div
           className="fixed top-0 left-0 w-full bg-white text-black py-4 px-4 md:px-8 flex justify-between items-center z-60"
-          style={{ zIndex: 1000 }} // Ensure notification is above navbar
+          style={{ zIndex: 1000 }}
         >
           <p className="text-sm font-bold">
             🎉 Special Offers: Visit our store and grab the latest deals!
@@ -82,13 +92,12 @@ const Navbar = () => {
           showNavbar ? "translate-y-0" : "-translate-y-full"
         } ${isScrolled ? "bg-black" : "bg-transparent"}`}
         style={{
-          top: showNotification ? "64px" : "0", // Adjust top position based on notification visibility
+          top: showNotification ? "64px" : "0",
           transition: "top 0.3s ease-out, background-color 0.3s ease-out",
         }}
       >
         <div className="container mx-auto flex justify-between items-center px-4 md:px-8">
           <h1 className="text-lg font-bold">Ngaatec</h1>
-
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6 font-bold">
             <Link href="/" legacyBehavior>
