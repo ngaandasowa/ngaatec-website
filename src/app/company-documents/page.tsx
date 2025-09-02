@@ -71,7 +71,7 @@ const CompanyDocuments = () => {
       >
         <div className="absolute inset-0 bg-black bg-opacity-40 flex justify-center items-center">
           <motion.h1
-            className="text-white text-4xl sm:text-5xl font-bold"
+            className="text-white ml-1 mr-1 text-4xl sm:text-5xl font-bold"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
