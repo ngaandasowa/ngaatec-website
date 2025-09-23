@@ -9,6 +9,7 @@ type Package = {
   price: string;
   features: string[];
   popular?: boolean;
+  orderLink?: string; // Add this line
 };
 
 type Service = {
@@ -39,6 +40,7 @@ const ServicesPage: React.FC = () => {
             "Premium Email Delivery",
             "Free SSL Certificate",
           ],
+          orderLink: "https://clientzone.ngaatec.co.zw/order?product=3", // Add this line
         },
         {
           name: "Silver",
@@ -329,15 +331,19 @@ const ServicesPage: React.FC = () => {
 
                     {/* Order Button */}
                     <a
-                      href={`https://wa.me/263783827570?text=${encodeURIComponent(
-                        `Hello, I would like to order the package "${pkg.name}" under the service "${service.title}".`
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-auto block text-center bg-green-600 hover:bg-green-700 px-3 py-2 rounded text-sm font-semibold"
-                    >
-                      Order Now
-                    </a>
+  href={
+    pkg.orderLink
+      ? pkg.orderLink
+      : `https://wa.me/263783827570?text=${encodeURIComponent(
+          `Hello, I would like to order the package "${pkg.name}" under the service "${service.title}".`
+        )}`
+  }
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mt-auto block text-center bg-green-600 hover:bg-green-700 px-3 py-2 rounded text-sm font-semibold"
+>
+  Order Now
+</a>
                   </div>
                 ))}
               </div>
