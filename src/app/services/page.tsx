@@ -162,11 +162,48 @@ const ServicesPage: React.FC = () => {
       title: "Branding & Graphic Design",
       description: "Creative visuals that make your brand unforgettable.",
       packages: [
-        { name: "Business Card", price: "$5", features: ["1 Concept", "2 Revisions", "Source Files"] },
-        { name: "Logo Design", price: "$10", features: ["2 Concepts", "Unlimited Revisions", "Source Files"] },
-        { name: "Flyer / Poster / Banner", price: "$10–$25", features: ["Custom Design", "Print-Ready"] },
-        { name: "Company Profile", price: "$30", features: ["Up to 10 Pages", "PDF Format", "Custom Design"], popular: true },
+    {
+      name: "Business Card",
+      price: "$10–$30",
+      features: [
+        "1 Concept",
+        "2 Revisions",
+        "Source Files",
+        "Print-Ready Files",
+        "Optional at higher end: Printing for 50 or 100 cards"
+      ]
+    },
+    {
+      name: "Logo Design",
+      price: "$25–$80",
+      features: [
+        "2 Concepts",
+        "2 Revisions",
+        "Vector & PNG Files",
+        "Optional at higher end: Additional concepts, basic brand guide"
+      ]
+    },
+    {
+      name: "Flyer / Poster / Banner",
+      price: "$10–$75",
+      features: [
+        "Custom Design",
+        "Print-Ready",
+        "Optional at higher end: Multiple revisions, larger formats, web-optimized images"
+      ]
+    },
+    {
+      name: "Company Profile",
+      price: "$40–$200+",
+      features: [
+        "Up to 10 Pages",
+        "PDF Format",
+        "Custom Design",
+        "Optional at higher end: More pages, multiple concepts, additional revisions"
       ],
+      popular: true
+    }
+],
     },
     {
       id: 5,
