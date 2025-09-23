@@ -56,6 +56,7 @@ const ServicesPage: React.FC = () => {
             "Premium Email Delivery",
             "Free SSL Certificate",
           ],
+          orderLink: "https://clientzone.ngaatec.co.zw/order?product=4",
           popular: true,
         },
         {
@@ -72,6 +73,7 @@ const ServicesPage: React.FC = () => {
             "Premium Email Delivery",
             "Free SSL Certificate",
           ],
+          orderLink: "https://clientzone.ngaatec.co.zw/order?product=5",
         },
         {
           name: "Platinum",
@@ -87,6 +89,7 @@ const ServicesPage: React.FC = () => {
             "Premium Email Delivery",
             "Free SSL Certificate",
           ],
+          orderLink: "https://clientzone.ngaatec.co.zw/order?product=6",
         },
       ],
     },
