@@ -13,7 +13,7 @@ const CompanyDocuments = () => {
 
   const documents = [
     { id: 1, title: "Certificate of Incorporation", file: "/NgaatecPvtLtdCertificateofIncorporation.pdf" },
-    { id: 2, title: "Tax Clearance Certificate", file: "/ngaatec-tax-clearance-certificate-2jan2025to2jul2025.pdf" },
+    { id: 2, title: "Tax Clearance Certificate", file: "/ITF263_ngaatec.pdf" },
     { id: 3, title: "Company Profile", file: "/Ngaatec-Private-Limited-Company-Profile.pdf" },
   ];
 
