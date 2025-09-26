@@ -42,6 +42,27 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    // Reset modal state when component mounts or page changes
+    setShowClientZoneModal(false);
+    setCountdown(3);
+  }, [pathname]); // Reset when route changes
+
+  useEffect(() => {
+    // Additional reset when page loads
+    const handlePageLoad = () => {
+      setShowClientZoneModal(false);
+      setCountdown(3);
+    };
+
+    window.addEventListener('load', handlePageLoad);
+    
+    // Cleanup function
+    return () => {
+      window.removeEventListener('load', handlePageLoad);
+    };
+  }, []);
+
+  useEffect(() => {
     let countdownInterval: NodeJS.Timeout;
     
     if (showClientZoneModal && countdown > 0) {
@@ -60,11 +81,29 @@ const Navbar = () => {
     };
   }, [showClientZoneModal, countdown]);
 
+  // Add beforeunload event to reset state when user leaves the page
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      setShowClientZoneModal(false);
+      setCountdown(3);
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
   useEffect(() => {
     const dismissed = localStorage.getItem("notificationDismissed");
     if (dismissed === "true") {
       setShowNotification(false);
     }
+
+    // Reset modal state on initial load
+    setShowClientZoneModal(false);
+    setCountdown(3);
   }, []);
 
   useEffect(() => {
@@ -158,7 +197,7 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Navbar */}
+      {/* Rest of your navbar code remains the same */}
       <nav
         className={`fixed w-full text-white py-4 z-50 transition-all duration-300 ease-in-out ${
           showNavbar ? "translate-y-0" : "-translate-y-full"
