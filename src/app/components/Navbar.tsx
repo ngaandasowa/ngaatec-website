@@ -14,6 +14,7 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showNotification, setShowNotification] = useState(true);
   const [showClientZoneModal, setShowClientZoneModal] = useState(false);
+  const [countdown, setCountdown] = useState(3);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
 
@@ -32,15 +33,32 @@ const Navbar = () => {
 
   const handleClientZoneClick = () => {
     setShowClientZoneModal(true);
-    // Auto redirect after 2 seconds
-    setTimeout(() => {
-      window.location.href = "https://clientzone.ngaatec.co.zw";
-    }, 2000);
+    setCountdown(3); // Reset countdown to 3 seconds
   };
 
   const closeClientZoneModal = () => {
     setShowClientZoneModal(false);
+    setCountdown(3); // Reset countdown when modal is closed
   };
+
+  useEffect(() => {
+    let countdownInterval: NodeJS.Timeout;
+    
+    if (showClientZoneModal && countdown > 0) {
+      countdownInterval = setInterval(() => {
+        setCountdown((prev) => prev - 1);
+      }, 1000);
+    } else if (showClientZoneModal && countdown === 0) {
+      // Redirect when countdown reaches 0
+      window.location.href = "https://clientzone.ngaatec.co.zw";
+    }
+
+    return () => {
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+      }
+    };
+  }, [showClientZoneModal, countdown]);
 
   useEffect(() => {
     const dismissed = localStorage.getItem("notificationDismissed");
@@ -99,14 +117,40 @@ const Navbar = () => {
 
       {/* ClientZone Modal */}
       {showClientZoneModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-60 p-4">
-          <div className="bg-white text-black rounded-lg p-6 max-w-md w-full text-center">
-            <h3 className="text-lg font-bold mb-4">Redirecting to ClientZone</h3>
-            <p className="mb-4">You are being redirected to our ClientZone portal...</p>
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[1000] p-4"
+          style={{ zIndex: 1001 }}
+        >
+          <div className="bg-white text-black rounded-lg p-6 max-w-md w-full text-center shadow-2xl">
+            <h3 className="text-xl font-bold mb-4 text-blue-600">Redirecting to ClientZone</h3>
+            <p className="mb-4 text-gray-700">
+              You are being redirected to our ClientZone portal.
+            </p>
+            
+            {/* Countdown Display */}
+            <div className="mb-4">
+              <div className="text-4xl font-bold text-blue-600 mb-2">
+                {countdown}
+              </div>
+              <div className="text-sm text-gray-500">
+                {countdown === 1 ? "second" : "seconds"} remaining...
+              </div>
+            </div>
+
+            {/* Animated Progress Bar */}
+            <div className="w-full bg-gray-200 rounded-full h-2 mb-6">
+              <div 
+                className="bg-blue-600 h-2 rounded-full transition-all duration-1000 ease-linear"
+                style={{ width: `${((3 - countdown) / 3) * 100}%` }}
+              ></div>
+            </div>
+
+            {/* Loading Spinner */}
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            
             <button
               onClick={closeClientZoneModal}
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors duration-200"
             >
               Cancel Redirect
             </button>
@@ -196,7 +240,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Icons */}
           <div className="md:hidden flex items-center font-bold space-x-4">
-            {/* Mobile ClientZone Icon (replaces cart icon) */}
+            {/* Mobile ClientZone Icon */}
             <button
               onClick={handleClientZoneClick}
               className="text-white focus:outline-none"
