@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa";
+import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
@@ -12,7 +12,8 @@ const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [showNotification, setShowNotification] = useState(true); // Notification state
+  const [showNotification, setShowNotification] = useState(true);
+  const [showClientZoneModal, setShowClientZoneModal] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
 
@@ -26,12 +27,22 @@ const Navbar = () => {
 
   const closeNotification = () => {
     setShowNotification(false);
-    // Save dismissal in localStorage
     localStorage.setItem("notificationDismissed", "true");
   };
 
+  const handleClientZoneClick = () => {
+    setShowClientZoneModal(true);
+    // Auto redirect after 2 seconds
+    setTimeout(() => {
+      window.location.href = "https://clientzone.ngaatec.co.zw";
+    }, 2000);
+  };
+
+  const closeClientZoneModal = () => {
+    setShowClientZoneModal(false);
+  };
+
   useEffect(() => {
-    // Check if user has dismissed notification before
     const dismissed = localStorage.getItem("notificationDismissed");
     if (dismissed === "true") {
       setShowNotification(false);
@@ -86,6 +97,23 @@ const Navbar = () => {
         </div>
       )}
 
+      {/* ClientZone Modal */}
+      {showClientZoneModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-60 p-4">
+          <div className="bg-white text-black rounded-lg p-6 max-w-md w-full text-center">
+            <h3 className="text-lg font-bold mb-4">Redirecting to ClientZone</h3>
+            <p className="mb-4">You are being redirected to our ClientZone portal...</p>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <button
+              onClick={closeClientZoneModal}
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            >
+              Cancel Redirect
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Navbar */}
       <nav
         className={`fixed w-full text-white py-4 z-50 transition-all duration-300 ease-in-out ${
@@ -98,8 +126,9 @@ const Navbar = () => {
       >
         <div className="container mx-auto flex justify-between items-center px-4 md:px-8">
           <h1 className="text-lg font-bold">Ngaatec</h1>
+          
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-6 font-bold">
+          <div className="hidden md:flex space-x-6 font-bold items-center">
             <Link href="/" legacyBehavior>
               <a
                 className={`hover:text-blue-400 transition ${
@@ -154,15 +183,29 @@ const Navbar = () => {
                 Socials
               </a>
             </Link>
+            
+            {/* Desktop ClientZone Button */}
+            <button
+              onClick={handleClientZoneClick}
+              className="bg-white text-black hover:text-white bg-blue-600 hover:bg-[#212121] px-4 py-2 rounded-md transition-colors duration-200 flex items-center space-x-2"
+            >
+              <FaUserCircle size={16} />
+              <span>ClientZone</span>
+            </button>
           </div>
 
-          {/* Mobile Menu Icon */}
-          <div className="md:hidden flex items-center font-bold">
-            <Link href="/shop" legacyBehavior>
-              <a>
-                <FaShoppingCart size={24} className="mr-4" />
-              </a>
-            </Link>
+          {/* Mobile Menu Icons */}
+          <div className="md:hidden flex items-center font-bold space-x-4">
+            {/* Mobile ClientZone Icon (replaces cart icon) */}
+            <button
+              onClick={handleClientZoneClick}
+              className="text-white focus:outline-none"
+              aria-label="ClientZone"
+            >
+              <FaUserCircle size={24} />
+            </button>
+            
+            {/* Mobile Menu Toggle */}
             <button
               onClick={toggleMenu}
               className="text-white focus:outline-none"
@@ -196,6 +239,16 @@ const Navbar = () => {
                   }`}
                 >
                   Home
+                </a>
+              </Link>
+              <Link href="/shop" legacyBehavior>
+                <a
+                  onClick={closeMenu}
+                  className={`hover:text-blue-400 transition ${
+                    pathname === "/shop" ? "underline" : ""
+                  }`}
+                >
+                  Shop
                 </a>
               </Link>
               <Link href="/about" legacyBehavior>
@@ -238,6 +291,18 @@ const Navbar = () => {
                   Socials
                 </a>
               </Link>
+              
+              {/* Mobile ClientZone Button in Menu */}
+              <button
+                onClick={() => {
+                  closeMenu();
+                  handleClientZoneClick();
+                }}
+                className="bg-white text-black hover:bg-[#212121] hover:text-white px-4 py-2 rounded-md transition-colors duration-200 flex items-center space-x-2 mt-4"
+              >
+                <FaUserCircle size={16} />
+                <span>ClientZone</span>
+              </button>
             </div>
           </div>
         )}

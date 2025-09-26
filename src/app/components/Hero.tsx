@@ -120,11 +120,28 @@ export default function Hero() {
         whatsappNumber: "+263718119824",
       },
       {
-        Image: "/shipify_logo.webp",
+        Image: "/shipify_icon.svg",
         name: "Shipify International",
-        details: "Providing graphic design services to Kapstone Packaging, enhancing their brand image.",
+        details: "Providing graphic and web design services to Shipify International, enhancing their brand image and online presence.",
         callNumber: "+263775804681",
         whatsappNumber: "+263775804681",
+      },
+      {
+        Image: "/kwgroup_icon.svg",
+        name: "Kudzie Winnie Construction",
+        details: "Providing graphic and web design services to Kudzie Winnie Construction, enhancing their brand image and online presence.",
+        callNumber: "+263775804681",
+        whatsappNumber: "+263775804681",
+      },
+      {
+        Image: "/ltm_logo.png",
+        name: "LTM Logistics",
+        details: "Providing graphic design services to MJM Leatherware (DEHWEAR), enhancing their brand image.",
+        socials: {
+          facebook: "https://www.facebook.com/profile.php?id=100089461593337",
+        },
+        callNumber: "+263718119824",
+        whatsappNumber: "+263718119824",
       },
     ];
   

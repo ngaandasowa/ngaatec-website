@@ -98,9 +98,9 @@ const ServicesPage: React.FC = () => {
       title: "Domain Registration",
       description: "Secure your perfect domain name for your brand.",
       packages: [
-        { name: ".co.zw", price: "$5/year", features: ["Domain Registration for .co.zw"], popular: true },
-        { name: ".com", price: "$25/year", features: ["Domain Registration for .com"] },
-        { name: ".org", price: "$30/year", features: ["Domain Registration for .org"] },
+        { name: ".co.zw", price: "$5/year", features: ["Domain Registration for .co.zw"], popular: true, orderLink: "https://clientzone.ngaatec.co.zw/order?product=1",},
+        { name: ".com", price: "$25/year", features: ["Domain Registration for .com"], orderLink: "https://clientzone.ngaatec.co.zw/order?product=1",},
+        { name: ".org", price: "$30/year", features: ["Domain Registration for .org"], orderLink: "https://clientzone.ngaatec.co.zw/order?product=1", },
         { name: "Other Domains", price: "Custom Pricing", features: ["Tell us your domain, and we'll provide a quote"] },
       ],
     },
@@ -111,7 +111,7 @@ const ServicesPage: React.FC = () => {
       packages: [
         {
           name: "Basic",
-          price: "$60 – $100+",
+          price: "$80.00",
           features: [
             "Pre-made template, lightly customized",
             "Up to 5 pages",
@@ -119,10 +119,11 @@ const ServicesPage: React.FC = () => {
             "Basic SEO setup",
             "2 round of revisions",
           ],
+          orderLink: "https://clientzone.ngaatec.co.zw/order?product=7",
         },
         {
           name: "Standard",
-          price: "$150 – $250+",
+          price: "$150.00",
           features: [
             "Everything in Basic",
             "Custom homepage design",
@@ -133,10 +134,11 @@ const ServicesPage: React.FC = () => {
             "3 rounds of revisions",
           ],
           popular: true,
+          orderLink: "https://clientzone.ngaatec.co.zw/order?product=8",
         },
         {
           name: "Premium",
-          price: "$300 – $500+",
+          price: "$300.00",
           features: [
             "Everything in Standard",
             "Fully custom design & branding",
@@ -147,10 +149,11 @@ const ServicesPage: React.FC = () => {
             "Ongoing maintenance & support",
             "Unlimited revisions",
           ],
+          orderLink: "https://clientzone.ngaatec.co.zw/order?product=9",
         },
         {
           name: "E-commerce",
-          price: "$600 – $1000+",
+          price: "$600.00",
           features: [
             "Product catalog & shopping cart",
             "Secure payment & shipping management",
@@ -159,6 +162,7 @@ const ServicesPage: React.FC = () => {
             "Basic SEO & marketing tools",
             "3 rounds of revisions",
           ],
+          orderLink: "https://clientzone.ngaatec.co.zw/order?product=10",
         },
       ],
     },
